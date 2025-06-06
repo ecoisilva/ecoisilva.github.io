@@ -2,30 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ecoisilva.netlify.app/</loc>
+    <loc>https://ecoisilva.github.io/</loc>
     <lastmod>2025-04-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ecoisilva.netlify.app/publications/</loc>
+    <loc>https://ecoisilva.github.io/publications/</loc>
     <lastmod>2025-04-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ecoisilva.netlify.app/2020/12/01/hello-r-markdown/</loc>
+    <loc>https://ecoisilva.github.io/2020/12/01/hello-r-markdown/</loc>
     <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>https://ecoisilva.netlify.app/tags/plot/</loc>
+    <loc>https://ecoisilva.github.io/tags/plot/</loc>
     <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>https://ecoisilva.netlify.app/post/</loc>
+    <loc>https://ecoisilva.github.io/post/</loc>
     <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>https://ecoisilva.netlify.app/tags/r-markdown/</loc>
+    <loc>https://ecoisilva.github.io/tags/r-markdown/</loc>
     <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>https://ecoisilva.netlify.app/tags/regression/</loc>
+    <loc>https://ecoisilva.github.io/tags/regression/</loc>
     <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>https://ecoisilva.netlify.app/tags/</loc>
+    <loc>https://ecoisilva.github.io/tags/</loc>
     <lastmod>2020-12-01T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>https://ecoisilva.netlify.app/about/</loc>
+    <loc>https://ecoisilva.github.io/about/</loc>
   </url>
 </urlset>

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Regression on Inês Silva</title>
-    <link>https://ecoisilva.netlify.app/tags/regression/</link>
+    <link>https://ecoisilva.github.io/tags/regression/</link>
     <description>Recent content in Regression on Inês Silva</description>
     <generator>Hugo -- 0.147.3</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 01 Dec 2020 21:13:14 -0500</lastBuildDate>
-    <atom:link href="https://ecoisilva.netlify.app/tags/regression/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ecoisilva.github.io/tags/regression/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello R Markdown</title>
-      <link>https://ecoisilva.netlify.app/2020/12/01/hello-r-markdown/</link>
+      <link>https://ecoisilva.github.io/2020/12/01/hello-r-markdown/</link>
       <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
-      <guid>https://ecoisilva.netlify.app/2020/12/01/hello-r-markdown/</guid>
+      <guid>https://ecoisilva.github.io/2020/12/01/hello-r-markdown/</guid>
       <description>&lt;h1 id=&#34;r-markdown&#34;&gt;R Markdown&lt;/h1&gt;
 &lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
