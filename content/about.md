@@ -10,7 +10,7 @@ I am a postdoctoral researcher in the Earth System Science group at the Center f
   - [`AKDE_minireview_ms`](https://github.com/ecoisilva/AKDE_minireview), a review and tutorial to autocorrelated home range estimation using R.
 
 💡 I’m looking to collaborate on:
-  - Projects related to the animal movement analyses or the study design of tracking projects. I am also really interested in anything to do with wildlife-vehicle collisions or wildlife-road interactions. If you’re looking for collaborations, assistance or advice in these areas, feel free to reach out— I’d be happy to help!
+  - Projects related to animal movement analyses or study design of tracking projects. I am also really interested in anything to do with wildlife-vehicle collisions or wildlife-road interactions. If you’re looking for collaborations, assistance or advice in these areas, feel free to reach out— I’d be happy to help!
   
 Other work:
 [Google Scholar profile](https://scholar.google.com/citations?hl=en&user=dRvr6IYAAAAJ&view_op=list_works&sortby=pubdate) | [ORCID](https://orcid.org/0000-0003-4850-6193)
