@@ -1,0 +1,81 @@
+---
+pagetitle: "Software"
+format: html
+---
+
+```{=html}
+<style>
+body {
+    text-align: justify;
+}
+.custom-author {
+  color: #009da0;
+  font-family: 'Crimson Pro' !important;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: 600 !important;
+}
+</style>
+```
+
+::: {.btn-group .btn-centered role="group" aria-label="Social Links"}
+[{{< fa envelope >}} Email](mailto:i-simoes-silva@hzdr.de){.btn .btn-secondary .btn role="button" data-toggle="data" title="email"} [{{< fa brands github >}} Github](https://www.github.com/ecoisilva){.btn .btn-secondary .btn role="button" data-toggle="data" title="github"} [{{< fa graduation-cap >}} Scholar](https://scholar.google.com/citations?hl=en&user=dRvr6IYAAAA){.btn .btn-secondary .btn role="button" data-toggle="data" title="scholar"} [{{< fa brands bluesky fa-1x>}} Bluesky](https://bsky.app/profile/ecoisilva.bsky.social){.btn .btn-secondary .btn role="button" data-toggle="data" title="bluesky"}
+:::
+
+## <i class="fa-solid fa-code"></i> Software
+
+::::: {layout="[ 25, 80 ]"}
+::: {#first-column}
+
+[![](images/movedesign_logo.png){fig-alt="Logo for the movedesign R package and Shiny application" width="500" align="center"}](github.com/ecoisilva/movedesign)
+:::
+
+::: {#second-column}
+
+<!-- ### `movedesign` -->
+
+[<i class="fa-solid fa-cube"></i> R Package]{.badge .rounded-pill .bg-primary} [<i class="fa-solid fa-diagram-project"></i> Shiny App]{.badge .rounded-pill .bg-primary}
+
+<br>
+
+This `R` package and `Shiny` application are designed to support researchers in the planning and evaluation of movement ecology studies, focusing on two key targets: estimating home range areas, and estimating movement speed and distance traveled.
+
+Movement ecology studies frequently make use of data collected from animal tracking projects. Planning a successful animal tracking project requires careful consideration and clear objectives. It is crucial to plan ahead and understand how much data is required to accurately answer your chosen research questions, and choose the optimal tracking regime/schedule.
+
+To assist with study design, movedesign integrates the continuous-time methods available with the `ctmm` package. Animal movement is inherently autocorrelated (locations are similar as a function of space and time) and the `ctmm` package allows us to model these data as continuous-time stochastic processes, while dealing with other known biases (such as small sample sizes, irregular or missing data, and location error).
+
+Go [here](https://ecoisilva.github.io/movedesign/) for more information, including tutorials for single- and population-level inferences.
+:::
+:::::
+
+```{r}
+#| eval: false
+#| code-overflow: wrap
+
+install.packages("movedesign", 
+                 repos = c("https://ecoisilva.r-universe.dev",
+                           "https://cloud.r-project.org"))
+
+library(movedesign)
+movedesign::run_app()
+
+```
+
+## Citation:
+
+[Silva, I.]{.custom-author}, Fleming, C. H., Noonan, M. J., Fagan, W. F., & Calabrese, J. M. (2023). `movedesign`: Shiny `R` app to evaluate sampling design for animal movement studies. *Methods in Ecology and Evolution*, **14(9)**, 2216-2225.
+
+```
+   
+@article{silva2023movedesign,
+  title={movedesign: Shiny R app to evaluate sampling design for animal movement studies},
+  author={Silva, In{\^e}s and Fleming, Christen H and Noonan, Michael J and Fagan, William F and Calabrese, Justin M},
+  journal={Methods in Ecology and Evolution},
+  volume={14},
+  number={9},
+  pages={2216--2225},
+  year={2023},
+  publisher={Wiley Online Library}
+}
+
+```

@@ -1,0 +1,72 @@
+project:
+  type: website
+  output-dir: docs
+
+  resources:
+    - "/static/logo.png"
+    - "/static/blog-image.png"
+
+website:
+  title: "Inês Silva"
+  site-url: https://ecoisilva.github.io/
+  description: "Inês Silva is a quantitative ecologist addressing study design and movement ecology questions"
+  favicon: "/static/logo_favicon.png"
+  page-navigation: true
+  back-to-top-navigation: true
+  comments: 
+    utterances: 
+      repo: ecoisilva/ecoisilva.github.io 
+      label: utterances
+      theme: body-light
+      issue-term: title
+  
+  open-graph:
+    image: "/static/logo.png"
+    locale: en_US
+    
+  twitter-card: 
+    creator: "@ecoisilva"
+    image: "/static/logo.png"
+  
+  navbar:
+    logo: "/static/logo_favicon.png"
+    tools:
+    - icon: github
+      href: https://www.github.com/ecoisilva
+    background: primary
+    right:
+      - text: About me
+        aria-label: "About Me"
+        href: content/about.qmd
+    left:
+      - href: index.qmd
+        text: Home
+      - href: blog.qmd
+        text: Posts
+      - href: content/publications.qmd
+        text: Publications
+      - href: content/software.qmd
+        text: Software
+    
+  page-footer: 
+    left: >-
+        &#169; Inês Silva 2025 &#8729; Made with [Quarto](https://quarto.org)
+    right: 
+      - text: "{{< fa envelope >}} Contact me"
+        aria-label: "Contact Form"
+        href: contact.qmd
+
+format: 
+  html:
+    theme:
+      # dark:
+        - darkly
+        - assets/custom-dark.scss
+      # light:
+      #  - cosmo
+    css: assets/styles.css
+    toc: true
+    code-link: true
+    lightbox: true
+
+editor: visual

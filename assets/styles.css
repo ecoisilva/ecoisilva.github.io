@@ -1,0 +1,19 @@
+/* css styles */
+
+div.quarto-about-jolla .about-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100% !important;
+}
+
+div.quarto-about-marquee .about-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100% !important;
+}
+
+/* Inline code */
+$code-color: #999; // inline code text color
+

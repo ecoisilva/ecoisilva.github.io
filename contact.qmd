@@ -1,0 +1,59 @@
+---
+pagetitle: "Contact me"
+name: Contact Form
+page-layout: article
+format: 
+  html: 
+    grid:
+      margin-width: 0px
+      sidebar-width: 0px
+
+header-includes: >
+  <link rel="stylesheet" href="assets/contact.css">
+resources:
+  - assets/contact.css
+---
+
+::: {.grid}
+::: {.g-col-5 #note}
+
+# Contact me {{< fa envelope >}}
+
+For inquiries related to collaborations, workshops, or about my research, feel free to get in touch via this form!
+
+<p class = ".centered">
+<a class="link-dark me-1" href="https://bsky.app/profile/ecoisilva.bsky.social" title="bluesky" target="_blank" rel="noopener">{{< fa brands bluesky >}}</a>
+<a class="link-dark me-1" href="https://github.com/ecoisilva" title="github" target="_blank" rel="noopener">{{< fa brands github >}}</a>
+<a class="link-dark me-1" href="https://orcid.org/0000-0003-4850-6193" title="orcid" target="_blank" rel="noopener">{{< ai orcid >}}</a>
+<a class="link-dark me-1" href="https://scholar.google.com/citations?hl=en&user=dRvr6IYAAAA&user=dRvr6IYAAAAJ" title="Google Scholar" target="_blank"rel="noopener">{{< ai google-scholar >}}</a>
+</p>
+
+:::
+
+::: {.g-col-1}
+:::
+
+::: {.g-col-6 #form}
+
+<form 
+style="margin-top: -5em;"
+action="https://formspree.io/f/xzzgarvd" method="POST" accept-charset="utf-8">
+
+
+<label for="full-name">Full Name</label>
+<input type="text" name="name" id="full-name" class="form-control" placeholder="Your name here." required>
+
+<label for="email-address">Email Address</label>
+<input type="email" name="_replyto" id="email-address" class="form-control" placeholder="your@email.here" required>
+
+<label for="message">Message</label>
+  <textarea rows="6" name="message" id="message" class="form-control" placeholder="Your message here." required></textarea>
+
+<button type="submit" class="btn btn-primary mt-4">Send message</button>
+</form>
+
+:::
+
+
+:::
+<!-- end grid -->

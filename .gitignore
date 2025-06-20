@@ -2,9 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
-.DS_Store
 
-Thumbs.db
-content/posts/archives
-
-run.R
+/.quarto/

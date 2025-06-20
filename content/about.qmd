@@ -1,0 +1,25 @@
+---
+title: "About me"
+image: images/website_photo.png
+about: 
+  template: jolla
+  image-shape: rectangle
+  image-width: 60em
+toc: false
+---
+
+::: {.btn-group .btn-centered role="group" aria-label="Social Links"}
+[{{< fa envelope >}} Email](mailto:i-simoes-silva@hzdr.de){.btn .btn-secondary .btn role="button" data-toggle="data" title="email"} [{{< fa brands github >}} Github](https://www.github.com/ecoisilva){.btn .btn-secondary .btn role="button" data-toggle="data" title="github"} [{{< fa graduation-cap >}} Scholar](https://scholar.google.com/citations?hl=en&user=dRvr6IYAAAA){.btn .btn-secondary .btn role="button" data-toggle="data" title="scholar"} [{{< fa brands bluesky fa-1x>}} Bluesky](https://bsky.app/profile/ecoisilva.bsky.social){.btn .btn-secondary .btn role="button" data-toggle="data" title="bluesky"}
+:::
+
+<br>
+
+## Hi there 👋
+
+I am a postdoctoral researcher in the Earth System Science group at the Center for Advanced Systems Understanding ([CASUS](https://www.casus.science/)), located in Görlitz, Germany. I am studying animal-road interactions and movement ecology study design. My PhD was based in Thailand, working on the spatial-temporal patterns of wildlife-vehicle collisions in a Thai biodiversity hotspot, with a secondary focus on bat communities. I am particularly interested in movement ecology and road ecology.
+
+🚧 I’m currently working on:<br> — [`{movedesign}`](https://github.com/ecoisilva/movedesign), a `{Shiny}` application to assist in movement study design that leverages the `{ctmm}` R package;
+
+🔭 Recently, I have worked on:<br> — [`{AKDE_minireview_ms}`](https://github.com/ecoisilva/AKDE_minireview), a review and tutorial to autocorrelated home range estimation using `{R}`.
+
+💡 I’m looking to collaborate on:<br> — Anything related to animal movement analyses or the study design of tracking projects. I am also really interested in anything to do with wildlife-vehicle collisions or wildlife-road interactions. If you’re looking for collaborations, assistance or advice in these areas, feel free to reach out. I’d be happy to help!

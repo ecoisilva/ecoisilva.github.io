@@ -1,0 +1,1596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Inês Silva</title>
+<link>https://ecoisilva.github.io/blog.html</link>
+<atom:link href="https://ecoisilva.github.io/blog.xml" rel="self" type="application/rss+xml"/>
+<description>Inês Silva is a quantitative ecologist addressing study design and movement ecology questions</description>
+<generator>quarto-1.6.42</generator>
+<lastBuildDate>Invalid Date</lastBuildDate>
+<item>
+  <title>How to estimate home ranges</title>
+  <dc:creator>Inês Silva</dc:creator>
+  <link>https://ecoisilva.github.io/blog-posts/blog-post-1.html</link>
+  <description><![CDATA[ <p>This tutorial is a companion piece to a manuscript titled <strong><em>“Autocorrelation-informed home range estimation: a review and practical guide”</em></strong>. Manuscript was published in <a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13786">Methods in Ecology and Evolution</a>. Preprint is also available on <a href="https://ecoevorxiv.org/repository/view/4026/">EcoEvoRxiv</a>. For any definitions, check the main manuscript or the [<em>Glossary</em>].</p>
+<p><em>To cite this material:</em></p>
+<blockquote class="blockquote">
+<p>Silva, I., Fleming, C. H., Noonan, M. J., Alston, J., Folta, C., Fagan, W. F., &amp; Calabrese, J. M. (2022). Autocorrelation‐informed home range estimation: A review and practical guide. Methods in Ecology and Evolution, 13(3), 534-544.</p>
+</blockquote>
+<section id="introduction" class="level1 page-columns page-full"><h1>Introduction</h1>
+<p><strong><em>Home range</em></strong> estimation is a key output from animal tracking datasets, but the inherent properties of animal movement can lead traditional methods to under- or overestimated their size. <strong>Autocorrelated Kernel Density Estimation (AKDE)</strong> methods were designed to be statistically efficient while explicitly dealing with the complexities and biases of modern movement data, such as <em>autocorrelation</em>, <em>small sample sizes</em>, and <em>missing or irregularly sampled data</em>.</p>
+<aside><em>Home range</em>: the area repeatedly used throughout an animal’s lifetime for all its normal behaviors and activities, excluding occasional exploratory moves.
+</aside><p>The <strong>AKDE</strong> family of home range estimators will be run using <strong>R software</strong> (<a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>) and the <code>ctmm</code> package <span class="citation" data-cites="calabrese_ctmm_2016">(Calabrese et al., 2016)</span>. The techniques and mitigation measures available within this package include:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead><tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Method</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">When.to.run.</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">What.does.it.do.</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">R.function</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">AKDE</td>
+<td style="text-align: left;">Tracking data is autocorrelated</td>
+<td style="text-align: left;">Estimates range distributions from autocorrelated data, by conditioning on an autocorrelation model.</td>
+<td style="text-align: left; font-family: monospace;">akde(, debias = FALSE)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AKDEc</td>
+<td style="text-align: left;">If using GRF-based KDEs (such as AKDE)</td>
+<td style="text-align: left;">Removes the tendency of Gaussian reference function (GRF) methods to overestimate the area of home ranges.</td>
+<td style="text-align: left; font-family: monospace;">akde(, debias = TRUE)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pHREML</td>
+<td style="text-align: left;">Small (absolute and effective) sample sizes</td>
+<td style="text-align: left;">Improves upon ML and REML autocorrelation estimation, mitigating small sample size biases.</td>
+<td style="text-align: left; font-family: monospace;">ctmm.select(, method = "pHREML")</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wAKDEc</td>
+<td style="text-align: left;">Irregular sampling schedules or missing data</td>
+<td style="text-align: left;">Upweights observations that occur during under-sampled times, while downweighting those occurring during over-sampled times.</td>
+<td style="text-align: left; font-family: monospace;">akde(, weights = TRUE)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Parametric bootstrap</td>
+<td style="text-align: left;">Extremely small effective sample size</td>
+<td style="text-align: left;">Calculates and corrects for autocorrelation estimation biases, by simulating from an approximate sampling distribution.</td>
+<td style="text-align: left; font-family: monospace;">ctmm.boot(...)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>AKDE<sub>c</sub> and pHREML are default arguments within the <code><a href="https://rdrr.io/pkg/ctmm/man/akde.html">akde()</a></code> and <code><a href="https://rdrr.io/pkg/ctmm/man/ctmm.fit.html">ctmm.select()</a></code> functions, respectively. Both measures will run automatically if arguments <code>debias</code> and <code>method</code> are left unspecified. For most situations, we recommend keeping both of these arguments as the default.</p>
+<div class="cell">
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Installing &amp; loading package:</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"ctmm"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;"><a href="https://github.com/ctmm-initiative/ctmm">ctmm</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<hr></section><section id="data-preparation" class="level1 page-columns page-full"><h1>Data Preparation</h1>
+<p>We will use two datasets, both available within the <code>ctmm</code> package: African buffalos (<em>Syncerus caffer</em>), and Mongolian gazelles (<em>Procapra gutturosa</em>). Information on the data collection protocol is available in Cross <em>et al.</em> <span class="citation" data-cites="cross_disease_2009">(2009)</span> and Fleming <em>et al.</em> <span class="citation" data-cites="fleming_fine-scale_2014">(2014)</span>. The <code>ctmm</code> package requires data to conform to Movebank naming conventions (<a href="https://www.movebank.org/node/2381" class="uri">https://www.movebank.org/node/2381</a>). We recommend uploading your data to Movebank (<a href="http://www.movebank.org/" class="uri">http://www.movebank.org/</a>) as this will facilitate data preparation, and ensure that your data are correctly formatted for <code>ctmm</code>. If needed, Movebank allows you to keep your data private.</p>
+<p>We will focus on the simplest data structure:</p>
+<ul>
+<li>
+<code>animal ID</code> or <code>ID</code> — An individual identifier for each animal tracked;</li>
+<li>
+<code>timestamp</code> or <code>t</code> — The date and time corresponding to a sensor measurement;
+<ul>
+<li>
+<strong>Example</strong>: 2021-01-01 18:31:00.000
+<ul>
+<li>
+<strong>Format</strong>: yyyy-MM-dd HH:mm:ss.SSS</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<code>longitude</code> or <code>x</code> — The geographic longitude of the location as estimated by the sensor;
+<ul>
+<li>
+<strong>Example</strong>: -121.1761111
+<ul>
+<li>
+<strong>Units</strong>: decimal degrees, WGS84 reference system.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<code>latitude</code> or <code>y</code> — The geographic latitude of the location as estimated by the sensor;
+<ul>
+<li>
+<strong>Example</strong>: -41.0982423
+<ul>
+<li>
+<strong>Units</strong>: decimal degrees, WGS84 reference system.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Location can also be described as UTM locations instead of latitude/longitude. In this case, you should provide <code>UTM easting</code>, <code>UTM northing</code>, and <code>UTM zone</code>. For all terms and conventions, please see the full vocabulary list here: <a href="http://vocab.nerc.ac.uk/collection/MVB/current/" class="uri">http://vocab.nerc.ac.uk/collection/MVB/current/</a>.</p>
+<section id="step-1.-formatting-and-loading-an-animal-tracking-dataset" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="step-1.-formatting-and-loading-an-animal-tracking-dataset">
+<strong>Step 1.</strong> Formatting and loading an animal tracking dataset</h2>
+<p>You can import data into R through the <code><a href="https://rdrr.io/r/utils/read.table.html">read.table()</a></code> or <code><a href="https://rdrr.io/r/utils/read.table.html">read.csv()</a></code> functions; make sure to navigate to the appropriate folder or working directory. You can find two example files within the GitHub repository <a href="https://github.com/ecoisilva/AKDE_minireview/tree/main/data">data folder</a>. To read these .csv files into R:</p>
+<div class="cell">
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"here"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;"><a href="https://here.r-lib.org/">here</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># your working directory</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># First, list all files in a specific folder:</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/list.files.html">list.files</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># verify that your file appears here</span></span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Then load the file:</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal0_longlat</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">here</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"blog-posts/data/example_data_longlat.csv"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal0_longlat</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       ID        timestamp longitude latitude
+1 animal0 2005-07-14 05:35  30.59648 65.24774
+2 animal0 2005-07-14 07:35  30.53256 65.27085
+3 animal0 2005-07-14 08:34  30.52398 65.26446
+4 animal0 2005-07-14 09:35  30.52848 65.25948
+5 animal0 2005-07-14 10:35  30.53382 65.26643
+6 animal0 2005-07-14 11:34  30.49970 65.27868</code></pre>
+</div>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># or:</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal0_utm</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span></span>
+<span>  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">here</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://here.r-lib.org/reference/here.html">here</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"blog-posts/data/example_data_utm.csv"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal0_utm</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       ID        timestamp UTM.Easting UTM.Northing  UTM.zone
+1 animal0 14/07/2005 05:35    387730.0      7238204 36 +north
+2 animal0 14/07/2005 07:35    384846.3      7240894 36 +north
+3 animal0 14/07/2005 08:34    384418.1      7240197 36 +north
+4 animal0 14/07/2005 09:35    384606.5      7239634 36 +north
+5 animal0 14/07/2005 10:35    384885.8      7240399 36 +north
+6 animal0 14/07/2005 11:34    383347.9      7241826 36 +north</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Finally, convert to telemetry object:</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal0a</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/as.telemetry.html">as.telemetry</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal0_longlat</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal0b</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/as.telemetry.html">as.telemetry</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal0_utm</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># if left unspecified, as.telemetry() will assume timezone = UTC, datum = WGS84</span></span></code></pre></div>
+</div>
+<p>Both these files represent the same individual, with either <em>longitude</em>/<em>latitude</em>, or UTM coordinates (<em>easting</em>, <em>northing</em>, and <em>zone</em>), and both outputs —<code>animal0a</code> and <code>animal0b</code>— will show the same coordinates after conversion. In general, the <code><a href="https://rdrr.io/pkg/ctmm/man/as.telemetry.html">as.telemetry()</a></code> function will immediately identify the columns if they are correctly named, convert the projection if needed, and then output the minimum sampling interval for each individual in the dataset. In this example, <code>animal0</code> has a minimum sampling interval of 59 minutes.</p>
+<section id="buffalo-tracking-data" class="level3"><h3 class="anchored" data-anchor-id="buffalo-tracking-data">1.1. Buffalo tracking data</h3>
+<p>For this tutorial, we will use data already prepared into a list of <code>telemetry</code> objects. We can load it directly from the <code>ctmm</code> R package with the <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> function:</p>
+<div class="cell">
+<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"buffalo"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">buffalo</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[[</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># selecting individual number 4</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                timestamp longitude  latitude          t         x         y
+17517 2006-04-25 05:09:00  31.73749 -24.19705 1145941740 -51803.35 -2715.663
+17518 2006-04-25 06:09:00  31.73653 -24.19929 1145945340 -51569.29 -2845.660
+17519 2006-04-25 07:09:00  31.73946 -24.20100 1145948940 -51340.72 -2576.353
+17520 2006-04-25 08:09:00  31.73987 -24.20092 1145952540 -51344.11 -2533.788
+17521 2006-04-25 10:09:00  31.74086 -24.20365 1145959740 -51029.45 -2474.771
+17522 2006-04-25 11:09:00  31.74098 -24.20370 1145963340 -51022.23 -2463.655</code></pre>
+</div>
+<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plotting locations:</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="blog-post-1_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ecoisilva.github.io/blog-posts/blog-post-1_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This dataset showcases an irregular sampling schedule: the buffalo nicknamed <em>“Pepper”</em> had a sampling rate shift from one fix every hour to one fix every two hours. We will use this dataset to highlight data irregularity and the <strong>wAKDE</strong> mitigation measure.</p>
+</section><section id="gazelle-tracking-data" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="gazelle-tracking-data">1.2. Gazelle tracking data</h3>
+<div class="cell">
+<div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gazelle"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">gazelle</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[[</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># selecting individual number 11</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             x          y       t
+2742  18152.70  -8539.799       0
+2743  15931.16 -32069.788 1306800
+2744  17678.84 -28632.329 1396800
+2745  23135.50 -23820.789 1486800
+2746 -20310.78  20348.792 2419200
+2747 -17920.31  20598.668 2509200</code></pre>
+</div>
+<div class="sourceCode" id="cb13" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plotting locations:</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="blog-post-1_files/figure-html/unnamed-chunk-8-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://ecoisilva.github.io/blog-posts/blog-post-1_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<aside><em>Home range crossing time</em>: the time required for an animal to cross the linear extent of its home range.
+</aside><p>Mongolian gazelles have a <strong><em>home range crossing time</em></strong> of a few months, and with a maximum longevity around 10 years, it is impossible to get a considerable <strong><em>effective sample size</em></strong> no matter the study duration <span class="citation" data-cites="fleming_overcoming_2019">(Fleming et al., 2019)</span>. We will use this dataset to highlight how to check <strong><em>effective sample size</em></strong> and apply the <strong>parametric bootstrap</strong> mitigation.</p>
+<aside><em>Effective sample size (N)</em>: number of range crossings that occurred during the observation period. Can be roughly estimated by dividing the duration of the tracking dataset by the average home range crossing time parameter.
+</aside><hr></section></section></section><section id="data-analysis" class="level1 page-columns page-full"><h1>Data Analysis</h1>
+<section id="step-2.-checking-for-the-range-residency-assumption" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="step-2.-checking-for-the-range-residency-assumption">
+<strong>Step 2.</strong> Checking for the <em>range residency</em> assumption</h2>
+<p>First, we want to check if our first tracking dataset (<code>animal1_buffalo</code>) can be used for home range estimation by checking for <strong><em>range residency</em></strong>. To achieve this, we calculate the <strong>semi-variance function (SVF)</strong>, and visualize it through the <code><a href="https://rdrr.io/pkg/ctmm/man/variogram.html">variogram()</a></code> function.</p>
+<aside><em>Range residency</em>: the tendency of an animal to remain within their home range.
+</aside><p><strong>Variograms</strong> are an unbiased way to visualize <em>autocorrelation</em> structure, representing the average square displacement (y-axis) over a specific time lag (x-axis). To facilitate interpretation, we have the <strong>SVF</strong> of <code>animal1_buffalo</code> zoomed out (right) to showcase all time lags and (left) zoomed in to showcase time lags up to two months:</p>
+<div class="cell">
+<div class="sourceCode" id="cb14" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">level</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.95</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># we want to display 95% confidence intervals</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">xlim</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/unit.html">%#%</a></span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"month"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># to create a window of 2 months</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">SVF</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/variogram.html">variogram</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>mfrow <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">SVF</span>, fraction <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, level <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">level</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>v <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, col <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>, lty <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># adding a line at 1 month </span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">SVF</span>, xlim <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">xlim</span>, level <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">level</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>v <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, col <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>, lty <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="blog-post-1_files/figure-html/unnamed-chunk-9-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://ecoisilva.github.io/blog-posts/blog-post-1_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can see that the variogram flattens (<em>i.e.</em>, reaches an asymptote) after approximately <strong>1 month</strong> (<span style="color: red;">red</span> line). This also indicates at how coarse the timeseries needs to be to assume independence (no autocorrelation), and corresponds to when traditional methods —such as <strong>minimum convex polygons (MCPs)</strong> and <strong>Kernel Density Estimators (KDEs)</strong>— could be applied without violating their assumptions.</p>
+</section><section id="step-3.-selecting-the-best-fit-movement-model-through-model-selection" class="level2"><h2 class="anchored" data-anchor-id="step-3.-selecting-the-best-fit-movement-model-through-model-selection">
+<strong>Step 3.</strong> – Selecting the best-fit movement model through <em>model selection</em>
+</h2>
+<p>It is necessary to choose a home range estimator that accounts for the autocorrelated structure of the data, now that we see that it is <strong>not</strong> independently and identically distributed (non-IID). We need to test what movement model may explain the autocorrelated structure of our tracking data. We can run different movement processes with <strong>maximum likelihood (ML)</strong> or other parameter estimators, such as <strong>perturbative Hybrid REML (pHREML)</strong>. To facilitate further comparisons, we will run both ML and pHREML with the <code>ctmm.select</code> function.</p>
+<div class="cell">
+<div class="sourceCode" id="cb15" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calculate an automated model guesstimate:</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">GUESS1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/variogram.fit.html">ctmm.guess</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span>, interactive <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Automated model selection, starting from GUESS:</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT1_ML</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/ctmm.fit.html">ctmm.select</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">GUESS1</span>, method <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ML'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT1_pHREML</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/ctmm.fit.html">ctmm.select</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">GUESS1</span>, method <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pHREML'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">## reminder: it will default to pHREML if no method is specified.</span></span>
+<span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT1_ML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT1_pHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>Within these summaries, <code>$name</code> provides the selected best-fit model, <code>$DOF</code> provides information on the degrees of freedom (where <code>$DOF["area"]</code> corresponds to the <strong><em>effective sample size</em></strong> of the home-range area estimate), and <code>$CI</code> are the parameter outputs (area, position autocorrelation timescale, velocity autocorrelation timescale, and speed).</p>
+<p>The typical pool of candidate models includes isotropic (when diffusion is the same in every direction; symmetrical) and anisotropic (when diffusion varies with direction; asymmetrical) variants. The automated model selection shows that <em>OUF anisotropic</em> (anisotropic Ornstein-Uhlenbeck foraging process) is our best-fit model. This movement process features a home range, correlated positions, and correlated velocities. To check the full model selection table, we can run the following command:</p>
+<div class="cell">
+<div class="sourceCode" id="cb16" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT1_pHREML_verbose</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/ctmm.fit.html">ctmm.select</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">GUESS1</span>, verbose <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT1_pHREML_verbose</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>By adding the argument <code>verbose = TRUE</code> we have access to the model selection table. By default, model selection is based on <em>Akaike’s Information Criterion adjusted for small sample sizes</em> (AICc). The <code>ctmm</code> package also offers BIC, LOOCV, and HSCV. LOOCV seems to work slightly better for very small datasets, but we recommend AICc for the majority of datasets.</p>
+</section><section id="step-4.-feeding-a-movement-model-into-the-home-range-estimator" class="level2"><h2 class="anchored" data-anchor-id="step-4.-feeding-a-movement-model-into-the-home-range-estimator">
+<strong>Step 4.</strong> Feeding a movement model into the <em>home range estimator</em>
+</h2>
+<p>Now we can fit this movement process into the <code><a href="https://rdrr.io/pkg/ctmm/man/akde.html">akde()</a></code> function, and estimate the home range of <code>animal1_buffalo</code>. This function currently defaults to the <strong>area-corrected AKDE</strong>, or <strong>AKDEc</strong> (Fleming &amp; Calabrese 2017):</p>
+<div class="cell">
+<div class="sourceCode" id="cb17" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Run an area-corrected AKDE:</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1_ML</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/akde.html">akde</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT1_ML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1_pHREML</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/akde.html">akde</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT1_pHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1_pHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CI</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># home range area estimation</span></span></code></pre></div>
+</div>
+<p>We have calculated our home range for <code>animal1_buffalo</code>, resulting in an estimation of 757 km<sup>2</sup> (with 95% confidence intervals: 430–1,175 km<sup>2</sup>).</p>
+</section><section id="step-5.-evaluating-additional-biases-applying-mitigation-measures" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="step-5.-evaluating-additional-biases-applying-mitigation-measures">
+<strong>Step 5.</strong> Evaluating additional <em>biases</em>, applying <em>mitigation measures</em>
+</h2>
+<section id="buffalo-tracking-data-1" class="level3 page-columns page-full"><h3 class="anchored" data-anchor-id="buffalo-tracking-data-1">5.1. Buffalo tracking data</h3>
+<div class="cell">
+<div class="sourceCode" id="cb18" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1_pHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">DOF</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"area"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># effective sample size of animal1</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    area 
+15.65773 </code></pre>
+</div>
+<div class="sourceCode" id="cb20" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># absolute sample size</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1725</code></pre>
+</div>
+</div>
+<p>Our output here also reveals more information regarding our dataset: the <strong><em>effective sample size (N)</em></strong> and the <strong><em>absolute sample size (</em>n<em>)</em></strong>. We can return this measure with the <code>summary</code> function: in our case, the <em>N</em> for <code>animal1_buffalo</code> is 15.7. Comparatively, our <strong><em>absolute sample size</em></strong> is easy to output, as it is the total number of observations within our dataset (<em>n</em> = 1,725).</p>
+<aside><em>Absolute sample size (n)</em>: the number of observations (fixes) in a dataset.
+</aside><p>As mentioned earlier, <code>animal1_buffalo</code> had a device malfunction that led GPS fixes to shift from one fix per hour, to one fix every two hours. As such, this individual is particularly suited for a <strong>weighted AKDEc</strong> (or <strong>wAKDEc</strong>), so we can re-run the function with weights set to <code>TRUE</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb22" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1w_pHREML</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/akde.html">akde</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT1_pHREML</span>, weights <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1w_pHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CI</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># home range area estimation (weighted)</span></span></code></pre></div>
+</div>
+<p>Our new home range area estimation for <code>animal1_buffalo</code> is 761 km<sup>2</sup> (with 95% confidence intervals: 432–1,182 km<sup>2</sup>). We can now plot our home range estimate for <code>animal1_buffalo</code>:</p>
+<div class="cell">
+<div class="sourceCode" id="cb23" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Creating an extent that includes both UDs at the 95% CI level:</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">EXT</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/raster/man/extent.html">extent</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1_ML</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1_pHREML</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1w_pHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>, level <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.95</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plotting pHREML (with and without weights) side-by-side:</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>mfrow <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span>, UD <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1_pHREML</span>, ext <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">EXT</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pHREML AKDE"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"C"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal1_buffalo</span>, UD <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1w_pHREML</span>, ext <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">EXT</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pHREML wAKDE"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"C"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="blog-post-1_files/figure-html/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://ecoisilva.github.io/blog-posts/blog-post-1_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For <code>animal1_buffalo</code>, the difference between model parameter estimators is not substantial; we only have a ~5.7% AKDE area underestimation by ML compared to pHREML. However, the data fits the spatial locations much better.</p>
+<div class="cell">
+<div class="sourceCode" id="cb24" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1_ML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CI</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD1w_pHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CI</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5.737587</code></pre>
+</div>
+</div>
+</section><section id="gazelle-tracking-data-1" class="level3"><h3 class="anchored" data-anchor-id="gazelle-tracking-data-1">5.2. Gazelle tracking data</h3>
+<p>We can also check the difference with <code>animal2_gazelle</code>’s tracking data, where the small <strong><em>effective sample size</em></strong> issue is clearer:</p>
+<div class="cell">
+<div class="sourceCode" id="cb26" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">GUESS2</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/variogram.fit.html">ctmm.guess</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span>, interactive <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT2_ML</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/ctmm.fit.html">ctmm.select</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">GUESS2</span>, method <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'ML'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT2_pHREML</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/ctmm.fit.html">ctmm.select</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">GUESS2</span>, method <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'pHREML'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD2_ML</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/akde.html">akde</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT2_ML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD2_pHREML</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/akde.html">akde</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT2_pHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+</div>
+<p>With <code>animal2_gazelle</code>, we have a more substantial area underestimation by ML compared to pHREML (~15.2%). We can also see that our <strong><em>effective sample size</em></strong> is only 4.5, with an <strong><em>absolute sample size</em></strong> of 49 (<em>N</em> <img src="https://latex.codecogs.com/png.latex?%5Cll"> <em>n</em>).</p>
+<div class="cell">
+<div class="sourceCode" id="cb27" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD2_ML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CI</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD2_pHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CI</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15.16696</code></pre>
+</div>
+<div class="sourceCode" id="cb29" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD2_pHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">DOF</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"area"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># effective sample size</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    area 
+4.528926 </code></pre>
+</div>
+<div class="sourceCode" id="cb31" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># absolute sample size</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 49</code></pre>
+</div>
+</div>
+<p>At this point, we have selected a movement process, fed it into a home range area estimation with different model parameter estimators, and corrected for irregular sampling rates. With small <strong><em>effective sample sizes</em></strong>, it is important to see if <strong>parametric bootstrapping</strong> may be worth it to further reduce our estimation error. In order to do so, we can check the expected order of bias from pHREML:</p>
+<div class="cell">
+<div class="sourceCode" id="cb33" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Expected order of pHREML bias:</span></span>
+<span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT2_pHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">DOF</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'area'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      area 
+0.04875393 </code></pre>
+</div>
+</div>
+<p>The bias is currently <img src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BO%7D(5%5C%25)"> (“in the order of” 5%). As such, we will run parametric bootstrapping for <code>animal2_gazelle</code>. The relative error target is 1% by default (<code>argument error = 0.01</code>), but can be adjusted if necessary.</p>
+<div class="cell">
+<div class="sourceCode" id="cb35" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">start_time</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># start recording running time</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">BOOT</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/ctmm.boot.html">ctmm.boot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">FIT2_pHREML</span>, trace <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">## note: this function incurs substantial computational cost, may take hours!</span></span>
+<span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">total_time</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">start_time</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># output running time</span></span>
+<span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">BOOT</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">BOOT</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">DOF</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'area'</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">^</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span> <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># expected order of bias</span></span></code></pre></div>
+</div>
+<p>We can see that the expected order of bias was reduced to 2.3%, which is comparable to the numerical error target of 1%. To reduce the numerical error further, we would need to change the default relative error target of <code>ctmm.boot</code>, but the computational cost would continue to increase, and the comparably large statistical bias (2%) would remain.</p>
+<p>Now we will calculate the <strong>AKDEc</strong> based on the estimated parameters, and plot the home range of <code>animal2_gazelle</code>. Because of small <strong><em>effective sample size</em></strong>, we set optimal weights to <code>TRUE</code> for improved statistical efficiency:</p>
+<div class="cell">
+<div class="sourceCode" id="cb36" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD2_bpHREML</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/ctmm/man/akde.html">akde</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">BOOT</span>, weights <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD2_bpHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">CI</span></span></code></pre></div>
+</div>
+<p>Finally, we have calculated our home range for <code>animal2_gazelle</code>, with an estimated area of 13,274 square kilometers (with 95% confidence intervals: 3,231–30,280 km<sup>2</sup>). Our uncertainty with <code>animal2_gazelle</code> is substantially higher than with <code>animal1_buffalo</code>, as expected due to the small <strong><em>effective sample size</em></strong>.</p>
+<div class="cell">
+<div class="sourceCode" id="cb37" style="background: #f1f3f5;"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Creating an extent that includes both UDs at the 95% CI level:</span></span>
+<span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">EXT</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/pkg/raster/man/extent.html">extent</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD2_pHREML</span>, <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD2_bpHREML</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span>, level <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.95</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span></span>
+<span><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plotting pHREML and bootstrapped-pHREML side-by-side:</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span>mfrow <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span>, UD <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD2_pHREML</span>, ext <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">EXT</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pHREML AKDE"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"C"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/plot.html">plot</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">animal2_gazelle</span>, UD <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">UD2_bpHREML</span>, ext <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">EXT</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span>
+<span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/graphics/title.html">title</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">(</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bootstrapped pHREML wAKDE"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">[</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"C"</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">]</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">)</span></span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure"><p><a href="blog-post-1_files/figure-html/unnamed-chunk-22-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://ecoisilva.github.io/blog-posts/blog-post-1_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The results presented here were generated with <code>R</code> version <code>4.2.3</code>, and <code>ctmm</code> version <code>1.1.1</code>.</p>
+<hr></section></section></section><section id="glossary" class="level1"><h1>Glossary</h1>
+<p><a id="glossary"></a></p>
+<p>– <em>Home range</em>: the area repeatedly used throughout an animal’s lifetime for all its normal behaviors and activities, excluding occasional exploratory moves.</p>
+<p>– <em>Range residency</em>: the tendency of an animal to remain within their home range.</p>
+<p>– <em>Home range crossing time</em>: the time required for an animal to cross the linear extent of its home range.</p>
+<p>– <em>Absolute sample size</em> (<em>n</em>): the number of observations (fixes) in a dataset.</p>
+<p>– <em>Effective sample size</em> (<em>N</em>): number of range crossings that occurred during the observation period. Can be roughly estimated by dividing the duration of the tracking dataset by the average <em>home range crossing time</em> parameter.</p>
+</section><section id="references" class="level1">
+
+
+
+</section><a onclick="window.scrollTo(0, 0); return false;" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2">
+<div id="ref-calabrese_ctmm_2016" class="csl-entry">
+Calabrese, J. M., Fleming, C. H., &amp; Gurarie, E. (2016). Ctmm: <span>An</span> r package for analyzing animal relocation data as a continuous‐time stochastic process. <em>Methods in Ecology and Evolution</em>, <em>7</em>(9), 1124–1132.
+</div>
+<div id="ref-cross_disease_2009" class="csl-entry">
+Cross, P. C., Heisey, D. M., Bowers, J. A., Hay, C. T., Wolhuter, J., Buss, P., Hofmeyr, M., Michel, A. L., Bengis, R. G., &amp; Bird, T. L. F. (2009). Disease, predation and demography: Assessing the impacts of bovine tuberculosis on <span>African</span> buffalo by monitoring at individual and population levels. <em>Journal of Applied Ecology</em>, <em>46</em>(2), 467–475.
+</div>
+<div id="ref-fleming_fine-scale_2014" class="csl-entry">
+Fleming, C. H., Calabrese, J. M., Mueller, T., Olson, K. A., Leimgruber, P., &amp; Fagan, W. F. (2014). From fine-scale foraging to home ranges: A semivariance approach to identifying movement modes across spatiotemporal scales. <em>The American Naturalist</em>, <em>183</em>(5), E154–E167.
+</div>
+<div id="ref-fleming_overcoming_2019" class="csl-entry">
+Fleming, C. H., Noonan, M. J., Medici, E. P., &amp; Calabrese, J. M. (2019). Overcoming the challenge of small effective sample sizes in home‐range estimation. <em>Methods in Ecology and Evolution</em>, <em>10</em>(10), 1679–1689.
+</div>
+</div></section></div> ]]></description>
+  <category>movement ecology</category>
+  <category>home range</category>
+  <guid>https://ecoisilva.github.io/blog-posts/blog-post-1.html</guid>
+  <pubDate>Invalid Date</pubDate>
+  <media:content url="https://ecoisilva.github.io/files/blog-image1.png" medium="image" type="image/png"/>
+</item>
+</channel>
+</rss>
