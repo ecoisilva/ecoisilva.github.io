@@ -46,6 +46,10 @@ website:
         text: Publications
       - href: content/software.qmd
         text: Software
+      # - href: presentations/list.qmd
+      #   text: Presentations
+      # - href: conferences/index.qmd
+      #   text: Conferences
       - href: blog.qmd
         text: Posts
     
