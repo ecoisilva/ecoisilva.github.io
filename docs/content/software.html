@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.42">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="author" content="Inês Silva">
+<meta name="description" content="Inês Silva is a quantitative ecologist.">
 <title>Software – Inês Silva</title>
 <style>
 code{white-space: pre-wrap;}
@@ -66,10 +68,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-cb9394a61c45465f418a37cf18cd1367.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-34afa9cd112b715c69edd3663dee34db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-c90a0892eb3dc8b8037d858794ca0158.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -97,16 +99,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><link rel="stylesheet" href="../assets/styles.css">
+}</script>
 <meta property="og:title" content="Software">
-<meta property="og:description" content="Inês Silva is a quantitative ecologist addressing study design and movement ecology questions">
 <meta property="og:image" content="https://ecoisilva.github.io//static/logo.png">
 <meta property="og:site_name" content="Inês Silva">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="359">
 <meta property="og:image:width" content="385">
 <meta name="twitter:title" content="Software">
-<meta name="twitter:description" content="Inês Silva is a quantitative ecologist addressing study design and movement ecology questions">
 <meta name="twitter:image" content="https://ecoisilva.github.io//static/logo.png">
 <meta name="twitter:creator" content="@ecoisilva">
 <meta name="twitter:image-height" content="359">
@@ -120,9 +120,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../static/logo_favicon.png" alt="" class="navbar-logo"></a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Inês Silva</span>
-    </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -135,16 +132,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog.html"> 
-<span class="menu-text">Posts</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../content/publications.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="../content/software.html" aria-current="page"> 
 <span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../presentations/list.qmd"> 
+<span class="menu-text">Presentations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../conferences/index.qmd"> 
+<span class="menu-text">Conferences</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Posts</span></a>
   </li>  
 </ul>
 <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -166,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
 <li><a href="#software" id="toc-software" class="nav-link active" data-scroll-target="#software"><i class="fa-solid fa-code"></i> Software</a></li>
-  <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation">Citation:</a></li>
+  <li><a href="#citations" id="toc-citations" class="nav-link" data-scroll-target="#citations">Citations:</a></li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -174,16 +179,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 body {
     text-align: justify;
 }
-.custom-author {
-  color: #009da0;
-  font-family: 'Crimson Pro' !important;
-  font-style: italic;
-  font-size: 20px;
-  font-weight: 600 !important;
-}
 </style>
 <div class="btn-group btn-centered" role="group" aria-label="Social Links">
-<p><a href="mailto:i-simoes-silva@hzdr.de" class="btn btn-secondary" role="button" data-toggle="data" title="email"><i class="fa-solid fa-envelope" aria-label="envelope"></i> Email</a> <a href="https://www.github.com/ecoisilva" class="btn btn-secondary" role="button" data-toggle="data" title="github"><i class="fa-brands fa-github" aria-label="github"></i> Github</a> <a href="https://scholar.google.com/citations?hl=en&amp;user=dRvr6IYAAAA" class="btn btn-secondary" role="button" data-toggle="data" title="scholar"><i class="fa-solid fa-graduation-cap" aria-label="graduation-cap"></i> Scholar</a> <a href="https://bsky.app/profile/ecoisilva.bsky.social" class="btn btn-secondary" role="button" data-toggle="data" title="bluesky"><i class="fa-brands fa-bluesky" aria-label="bluesky"></i> Bluesky</a></p>
+<p><a href="mailto:i-simoes-silva@hzdr.de" class="btn btn-secondary" role="button" data-toggle="data" title="email"><i class="fa-solid fa-envelope" aria-label="envelope"></i> Email</a> <a href="https://www.github.com/ecoisilva" class="btn btn-secondary" role="button" data-toggle="data" title="github"><i class="fa-brands fa-github" aria-label="github"></i> GitHub</a> <a href="https://scholar.google.com/citations?hl=en&amp;user=dRvr6IYAAAA" class="btn btn-secondary" role="button" data-toggle="data" title="scholar"><i class="fa-solid fa-graduation-cap" aria-label="graduation-cap"></i> Scholar</a> <a href="https://bsky.app/profile/ecoisilva.bsky.social" class="btn btn-secondary" role="button" data-toggle="data" title="bluesky"><i class="fa-brands fa-bluesky" aria-label="bluesky"></i> Bluesky</a></p>
 </div>
 <section id="software" class="level2"><h2 class="anchored" data-anchor-id="software">
 <i class="fa-solid fa-code"></i> Software</h2>
@@ -207,27 +205,27 @@ body {
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"movedesign"</span>, </span>
-<span>                 repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"https://ecoisilva.r-universe.dev"</span>,</span>
-<span>                           <span class="st">"https://cloud.r-project.org"</span><span class="op">)</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"movedesign"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">movedesign</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ecoisilva.github.io/movedesign/">movedesign</a></span><span class="op">)</span></span>
 <span><span class="fu">movedesign</span><span class="fu">::</span><span class="fu">run_app</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="citation" class="level2"><h2 class="anchored" data-anchor-id="citation">Citation:</h2>
-<p><span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., &amp; Calabrese, J. M. (2023). <code>movedesign</code>: Shiny <code>R</code> app to evaluate sampling design for animal movement studies. <em>Methods in Ecology and Evolution</em>, <strong>14(9)</strong>, 2216-2225.</p>
-<pre><code>   
-@article{silva2023movedesign,
-  title={movedesign: Shiny R app to evaluate sampling design for animal movement studies},
-  author={Silva, In{\^e}s and Fleming, Christen H and Noonan, Michael J and Fagan, William F and Calabrese, Justin M},
-  journal={Methods in Ecology and Evolution},
-  volume={14},
-  number={9},
-  pages={2216--2225},
-  year={2023},
-  publisher={Wiley Online Library}
-}
-</code></pre>
+</section><section id="citations" class="level2"><h2 class="anchored" data-anchor-id="citations">Citations:</h2>
+<div class="ref-bibtex-block">
+<div class="sourceCode" id="cb2"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">silva2023movedesign</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>={movedesign: Shiny R app to evaluate sampling design for animal movement studies},</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>={Silva, In{<span class="ch">\^</span>e}s and Fleming, Christen H and Noonan, Michael J and Fagan, William F and Calabrese, Justin M},</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>={Methods in Ecology and Evolution},</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span>={14},</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span>={9},</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span>={2216--2225},</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>={2023},</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span>={Wiley Online Library}</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="ref-hanging-indent">
+<p><span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., &amp; Calabrese, J. M. (2023). <code>movedesign</code>: Shiny <code>R</code> app to evaluate sampling design for animal movement studies. <em>Methods in Ecology and Evolution</em>, <strong>14(9)</strong>, 2216-2225. DOI: <a href="https://doi.org/10.1111/2041-210X.14153"><code>10.1111/2041-210X.14153</code></a></p>
+</div>
 
 
 </section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">

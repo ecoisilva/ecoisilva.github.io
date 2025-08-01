@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Inês Silva">
+<meta name="description" content="Inês Silva is a quantitative ecologist.">
 
-<title>Publications – Inês Silva</title>
+<title>Inês Silva</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,15 +33,17 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="..//static/logo_favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-listing/list.min.js"></script>
+<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-cb9394a61c45465f418a37cf18cd1367.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-34afa9cd112b715c69edd3663dee34db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-c90a0892eb3dc8b8037d858794ca0158.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -69,16 +73,103 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-preprints .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
-<link rel="stylesheet" href="../assets/styles.css">
-<meta property="og:title" content="Publications">
+    const options = {
+      valueNames: ['listing-project','listing-website','listing-format','listing-editor','listing-pagetitle','listing-description-meta','listing-author-meta','listing-affiliation-meta','listing-orcid-meta','listing-language','listing-comments','listing-title','listing-subtitle','listing-date','listing-author','listing-categories','listing-pub-info','listing-doi','listing-path','listing-outputHref','listing-date-modified','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      
+      searchColumns: ["listing-project","listing-website","listing-format","listing-editor","listing-pagetitle","listing-description-meta","listing-author-meta","listing-affiliation-meta","listing-orcid-meta","listing-language","listing-comments","listing-title","listing-subtitle","listing-date","listing-author","listing-categories","listing-pub-info","listing-doi","listing-path","listing-outputHref","listing-date-modified","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-preprints'] = new List('listing-preprints', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-articles .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-project','listing-website','listing-format','listing-editor','listing-pagetitle','listing-description-meta','listing-author-meta','listing-affiliation-meta','listing-orcid-meta','listing-language','listing-comments','listing-title','listing-subtitle','listing-date','listing-author','listing-categories','listing-pub-info','listing-doi','listing-path','listing-outputHref','listing-date-modified','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      
+      searchColumns: ["listing-project","listing-website","listing-format","listing-editor","listing-pagetitle","listing-description-meta","listing-author-meta","listing-affiliation-meta","listing-orcid-meta","listing-language","listing-comments","listing-title","listing-subtitle","listing-date","listing-author","listing-categories","listing-pub-info","listing-doi","listing-path","listing-outputHref","listing-date-modified","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-articles'] = new List('listing-articles', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="Inês Silva">
+<meta property="og:description" content="Inês Silva is a quantitative ecologist addressing study design and movement ecology questions">
 <meta property="og:image" content="https://ecoisilva.github.io//static/logo.png">
 <meta property="og:site_name" content="Inês Silva">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="359">
 <meta property="og:image:width" content="385">
-<meta name="twitter:title" content="Publications">
+<meta name="twitter:title" content="Inês Silva">
+<meta name="twitter:description" content="Inês Silva is a quantitative ecologist addressing study design and movement ecology questions">
 <meta name="twitter:image" content="https://ecoisilva.github.io//static/logo.png">
 <meta name="twitter:creator" content="@ecoisilva">
 <meta name="twitter:image-height" content="359">
@@ -96,9 +187,6 @@ ul.task-list li input[type="checkbox"] {
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../static/logo_favicon.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Inês Silva</span>
-    </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -111,16 +199,24 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog.html"> 
-<span class="menu-text">Posts</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link active" href="../content/publications.html" aria-current="page"> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../content/software.html"> 
 <span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../presentations/list.qmd"> 
+<span class="menu-text">Presentations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../conferences/index.qmd"> 
+<span class="menu-text">Conferences</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Posts</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -137,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -145,33 +241,148 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#publications" id="toc-publications" class="nav-link active" data-scroll-target="#publications"><i class="fa-solid fa-file-lines"></i> Publications</a></li>
+  <li><a href="#preprints" id="toc-preprints" class="nav-link active" data-scroll-target="#preprints"><i class="fa-solid fa-file-lines"></i> Preprints</a></li>
+  <li><a href="#journal-articles" id="toc-journal-articles" class="nav-link" data-scroll-target="#journal-articles"><i class="fa-solid fa-file-lines"></i> Journal articles</a></li>
   </ul>
 </nav>
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ZXhwZXJpbWVudGFsJTIwZGVzaWdu">experimental design <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bW92ZW1lbnQlMjBlY29sb2d5">movement ecology <span class="quarto-category-count">(3)</span></div><div class="category" data-category="cm9hZCUyMGVjb2xvZ3k=">road ecology <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2lsZGxpZmUtdmVoaWNsZSUyMGNvbGxpc2lvbnM=">wildlife-vehicle collisions <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Research</h1>
+</div>
 
 
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <style>
 body {
     text-align: justify;
 }
-.custom-author {
-  color: #009da0;
-  font-family: 'Crimson Pro' !important;
-  font-style: italic;
-  font-size: 20px;
-  font-weight: 600 !important;
-}
 </style>
-<section id="publications" class="level2">
-<h2 class="anchored" data-anchor-id="publications"><i class="fa-solid fa-file-lines"></i> Publications</h2>
-<!-- [Data](){.btn-sm .btn .disabled .btn-primary role="button" data-toggle="data" title="data"} -->
-<section id="pre-prints" class="level4">
-<h4 class="anchored" data-anchor-id="pre-prints">Pre-prints</h4>
+<p>My research focused on both <em>applied</em> and <em>quantitative ecology</em>—the application of statistical and computational methods to understand ecological patterns and processes. I focus on &lt;span style=“color:#ffbf00”<strong>movement ecology</strong> and <span style="color:#ffbf00"><strong>road ecology</strong></span>, and I’m especially interested in study design, and the development of reproducible workflows to support ecological decision-making. I am also interested in understanding the direct and indirect impacts of roads on vertebrate communities.</p>
+<p><br></p>
+<section id="preprints" class="level2">
+<h2 class="anchored" data-anchor-id="preprints"><i class="fa-solid fa-file-lines"></i> Preprints</h2>
+<div id="listing-preprints" class="quarto-listing quarto-listing-container-custom">
+<div class="research project-list">
+<ul class="list">
+    
+        <li class="project" data-index="0" data-categories="bW92ZW1lbnQlMjBlY29sb2d5JTJDcm9hZCUyMGVjb2xvZ3klMkN3aWxkbGlmZS12ZWhpY2xlJTIwY29sbGlzaW9ucw==" data-listing-date-sort="1753999200000" data-listing-file-modified-sort="1754058985241" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="259">
+            <div class="project-content listing-pub-info">
+                <p>de Figueiredo, B. G., <span class="custom-author">Silva, I.</span>, Noonan, M. J., Fleming, C. H., Fagan, W. F., Calabrese, J. M., &amp; Martinez-Garcia, R. (2025). How animal movement influences wildlife-vehicle collision risk: a mathematical framework for range-resident species. <i>arXiv</i>. DOI: <a href="https://arxiv.org/abs/2507.17058"><code>arXiv:2507.17058</code></a></p>
+            </div>
+            <div class="thumbnail">
+                <img src="" alt="">
+            </div>
+            
+            <div class="project-categories">
+                
+                    <div class="project-category"><a href="#category=movement ecology">
+                            movement ecology
+                        </a></div>
+                    
+                    <div class="project-category"><a href="#category=road ecology">
+                            road ecology
+                        </a></div>
+                    
+                    <div class="project-category"><a href="#category=wildlife-vehicle collisions">
+                            wildlife-vehicle collisions
+                        </a></div>
+                    
+            </div>
+            
+
+            
+            
+            
+            <div class="project-details-listing">
+                <ul class="project-links">
+                    <li class="project-link details">
+                        <a href="../preprints/figueiredo_et_al_2025/index.html" class="listing-name">
+                            <i class="fa-solid fa-circle-info"></i> Full details »
+                        </a>
+                    </li>
+                    
+                        
+                    <li class="project-link">
+                        
+                        <a href="../2507.17058v1.pdf">
+                        
+                            <i class="fa-solid fa-file-pdf"></i> Preprint
+                        </a>
+                    </li>
+                        
+                    
+                </ul>
+            </div>
+        </li>
+        
+        <li class="project" data-index="1" data-categories="bW92ZW1lbnQlMjBlY29sb2d5JTJDZXhwZXJpbWVudGFsJTIwZGVzaWdu" data-listing-date-sort="1753999200000" data-listing-file-modified-sort="1754058987316" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="374">
+            <div class="project-content listing-pub-info">
+                <p><span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., &amp; Calabrese, J. M. (2025). Too few, too many, or just right? Optimizing sample sizes for population-level inferences in animal tracking projects. <i>BioRxiv</i>. DOI: <a href="https://www.XXX"><code>10.1257/pol.20220766</code></a></p>
+            </div>
+            <div class="thumbnail">
+                <img src="" alt="">
+            </div>
+            
+            <div class="project-categories">
+                
+                    <div class="project-category"><a href="#category=movement ecology">
+                            movement ecology
+                        </a></div>
+                    
+                    <div class="project-category"><a href="#category=experimental design">
+                            experimental design
+                        </a></div>
+                    
+            </div>
+            
+
+            
+            
+            
+            <div class="project-details-listing">
+                <ul class="project-links">
+                    <li class="project-link details">
+                        <a href="../preprints/silva_et_al_2025a/index.html" class="listing-name">
+                            <i class="fa-solid fa-circle-info"></i> Full details »
+                        </a>
+                    </li>
+                    
+                        
+                    <li class="project-link">
+                        
+                        <a href="../ms_study-design.pdf">
+                        
+                            <i class="fa-solid fa-file-pdf"></i> Preprint
+                        </a>
+                    </li>
+                        
+                    
+                </ul>
+            </div>
+        </li>
+        
+</ul>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
 <p>Alston, J. M., Fleming, C. H., Noonan, M. J., Tucker, M. A., <span class="custom-author">Silva, I.</span>, Folta, C., Akre, T.S., Ali, A.H., Belant, J.L., Beyer, D., Blaum, N., &amp; Calabrese, J. M. Clarifying space use concepts in ecology: range vs.&nbsp;occurrence distributions. <em>bioRxiv.</em> [preprint]</p>
 <div class="btn-group" role="group" aria-label="Publication Links">
 <p><a href="https://www.biorxiv.org/content/10.1101/2022.09.29.509951v1" class="btn-sm btn btn-primary" role="button" data-toggle="pdf" title="Link"><i class="fa-solid fa-link" aria-label="link"></i> Link</a></p>
@@ -180,10 +391,76 @@ body {
 <div class="btn-group" role="group" aria-label="Publication Links">
 <p><a href="https://ecoevorxiv.org/repository/view/8417/" class="btn-sm btn btn-primary" role="button" data-toggle="pdf" title="Link"><i class="fa-solid fa-link" aria-label="link"></i> Link</a></p>
 </div>
-<hr width="100%">
+<!-- [Data](){.btn-sm .btn .disabled .btn-primary role="button" data-toggle="data" title="data"} -->
+<p><br></p>
 </section>
-<section id="section" class="level4">
-<h4 class="anchored" data-anchor-id="section">2025</h4>
+<section id="journal-articles" class="level2">
+<h2 class="anchored" data-anchor-id="journal-articles"><i class="fa-solid fa-file-lines"></i> Journal articles</h2>
+<div id="listing-articles" class="quarto-listing quarto-listing-container-custom">
+<div class="research project-list">
+<ul class="list">
+    
+        <li class="project" data-index="0" data-categories="bW92ZW1lbnQlMjBlY29sb2d5JTJDZXhwZXJpbWVudGFsJTIwZGVzaWdu" data-listing-date-sort="1685916000000" data-listing-file-modified-sort="1754059453207" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="409">
+            <div class="project-content listing-pub-info">
+                <p><span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., &amp; Calabrese, J. M. (2023). movedesign: Shiny R app to evaluate sampling design for animal movement studies. <i>Methods in Ecology and Evolution</i>, 14(9), 2216-2225. DOI: <a href="https://doi.org/10.1111/2041-210X.14153"><code>10.1111/2041-210X.14153</code></a></p>
+            </div>
+            <div class="thumbnail">
+                <img src="" alt="">
+            </div>
+            
+            <div class="project-categories">
+                
+                    <div class="project-category"><a href="#category=movement ecology">
+                            movement ecology
+                        </a></div>
+                    
+                    <div class="project-category"><a href="#category=experimental design">
+                            experimental design
+                        </a></div>
+                    
+            </div>
+            
+
+            
+            
+            
+            <div class="project-details-listing">
+                <ul class="project-links">
+                    <li class="project-link details">
+                        <a href="../manuscripts/silva_et_al_2023a/index.html" class="listing-name">
+                            <i class="fa-solid fa-circle-info"></i> Full details »
+                        </a>
+                    </li>
+                    
+                        
+                    <li class="project-link">
+                        
+                        <a href="../https://www.biorxiv.org/content/10.1101/2023.01.27.525894v2">
+                        
+                            <i class="fa-solid fa-file-pdf"></i> Preprint
+                        </a>
+                    </li>
+                        
+                    <li class="project-link">
+                        
+                        <a href="https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14153">
+                        
+                            <i class="fa-solid fa-scroll"></i> Published paper
+                        </a>
+                    </li>
+                        
+                    
+                </ul>
+            </div>
+        </li>
+        
+</ul>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+<hr width="100%">
 <p>Grilo, C., Neves, T., Bates, J., le Roux, A., Medrano-Vizcaíno, P., Quaranta, M., <span class="custom-author">Silva, I.</span>, Soanes, K., &amp; Wang, Y. (2025). Global Roadkill Data: a dataset on terrestrial vertebrate mortality caused by collision with vehicles. <em>Scientific Data</em>, 12(1), 505.</p>
 <div class="btn-group" role="group" aria-label="Publication Links">
 <p><a href="https://doi.org/10.6084/m9.figshare.25714233" class="btn-sm btn btn-primary" role="button" data-toggle="code" title="Data File"><i class="fa-solid fa-database" aria-label="database"></i> Data</a> <a href="https://github.com/PORBIOTA/PORBIOTA-ICNF/tree/main/DwC_Creation_Helpers" class="btn-sm btn btn-primary" role="button" data-toggle="code" title="Code"><i class="fa-solid fa-code" aria-label="code"></i> Code</a> <a href="https://www.nature.com/articles/s41597-024-04207-x" class="btn-sm btn btn-primary" role="button" data-toggle="pdf" title="Link"><i class="fa-solid fa-link" aria-label="link"></i> Link</a></p>
@@ -195,38 +472,49 @@ body {
 <hr width="100%">
 <p>Noble, D. W., Xirocostas, Z. A., Wu, N. C., Martinig, A. R., Almeida, R. A., Bairos-Novak, K. R., … <span class="custom-author">Silva, I.</span>, … &amp; Lagisz, M. (2024). The promise of community-driven preprints in ecology and evolution. <em>Proceedings of the Royal Society B: Biological Sciences</em>, 292(2039), 20241487.</p>
 <p><span class="custom-author">Silva, I.</span>, &amp; Calabrese, J. M. (2024). Emerging opportunities for wildlife conservation with sustainable autonomous transportation. <em>Frontiers in Ecology and the Environment</em>, 22(2), e2697.</p>
+<hr width="100%">
 <p>Ivimey-Cook, E. R., Pick, J. L., Bairos-Novak, K., Culina, A., Gould, E., Grainger, M., Marshall, B., Moreau, D., Paquet, M., Royauté, R. and Sanchez-Tojar, A., <span class="custom-author">Silva, I.</span>, &amp; Windecker, S. (2023). Implementing code review in the scientific workflow: Insights from ecology and evolutionary biology. <em>Journal of Evolutionary Biology</em>, 36(10), 1347-1356.</p>
 <p><span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., &amp; Calabrese, J. M. (2023). <em>movedesign: Shiny R app to evaluate sampling design for animal movement studies.</em> Methods in Ecology and Evolution, <strong>14(9)</strong>, 2216-2225.</p>
 <!-- [doi.org/10.1111/2041-210X.14153](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.14153)   -->
 <!-- [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?logo=github)](https://github.com/ecoisilva/movedesign) -->
-<p><span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Alston, J., Folta, C., Fagan, W. F., &amp; Calabrese, J. M. (2021). Autocorrelation-informed home range estimation: a review and practical guide. Methods in Ecology and Evolution, 13(3), 534-544.</p>
+<hr width="100%">
 <p>Montano, Y., Marshall, B. M., Ward, M., <span class="custom-author">Silva, I.</span>, Artchawakom, T., Waengsothorn, S., &amp; Strine, C. T. (2022). A stable home: Autocorrelated Kernel Density Estimated home ranges of the critically endangered Elongated tortoise. <em>Herpetological Journal</em>, 32(3), 120-129.</p>
+<hr width="100%">
+<p><span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Alston, J., Folta, C., Fagan, W. F., &amp; Calabrese, J. M. (2021). Autocorrelation-informed home range estimation: a review and practical guide. Methods in Ecology and Evolution, 13(3), 534-544.</p>
 <p>Jones, M. D., Marshall, B. M., Smith, S. N., Crane, M., <span class="custom-author">Silva, I.</span>, Artchawakom, T., Waengsothorn, S., Wüster, W., Goode, M. &amp; Strine, C. T. (2021). How do King Cobras move across a major highway? Unintentional wildlife crossing structures may facilitate movement. <em>Ecology and Evolution</em>, 12(3), e8691.</p>
 <p>Crane, M., <span class="custom-author">Silva, I.</span>, Marshall, B. M., &amp; Strine, C. T. (2021). Lots of movement, little progress: A review of reptile home range literature. <em>PeerJ</em>, 9, e11742.</p>
 <p><span class="custom-author">Silva, I.</span>, Crane, M., &amp; Savini, T. (2021). The road less traveled: addressing reproducibility and conservation priorities of wildlife-vehicle collision studies in tropical and subtropical regions. <em>Global Ecology and Conservation</em>, e01584.</p>
 <p>Crane, M., <span class="custom-author">Silva, I.</span>, Grainger, M. J., &amp; Gale, G. A. (2021). Limitations and gaps in global bat wing morphology trait data. <em>Mammal Review</em>, 52(2), 165-176.</p>
 <p><span class="custom-author">Silva, I.</span>, Crane, M., Marshall, B. M., &amp; Strine, C. T. (2020). Reptiles on the wrong track? Moving beyond traditional estimators with dynamic Brownian Bridge Movement Models. <em>Movement Ecology</em>, 8(1), 1-13.</p>
+<hr width="100%">
 <p>Jones, M. D., Crane, M. S., <span class="custom-author">Silva, I.</span>, M., Artchawakom, T., Waengsothorn, S., Suwanwaree, P., Strine, C. T. &amp; Goode, M. (2020). Supposed snake specialist consumes monitor lizards: diet and trophic implications of king cobra feeding ecology. <em>Ecology</em>, 101(10), e03085.</p>
 <p>Rocha, R., López-Baucells, A., Farneda, F. Z., Ferreira, D. F., <span class="custom-author">Silva, I.</span>, Acácio, M., Palmeirim, J. M., &amp; Meyer, C. F. (2020). Second-growth and small forest clearings have little effect on the temporal activity patterns of Amazonian phyllostomid bats. <em>Current Zoology</em>, 66(2), 145-153.</p>
 <p><span class="custom-author">Silva, I.</span>, Rocha, R., López-Baucells, A., Farneda, F. Z., &amp; Meyer, C. F. (2020). Effects of forest fragmentation on the vertical stratification of neotropical bats. <em>Diversity</em>, 12(2), 67.</p>
 <p><span class="custom-author">Silva, I.</span>, Crane, M., &amp; Savini, T. (2020). High roadkill rates in the Dong Phayayen‐Khao Yai World Heritage Site: conservation implications of a rising threat to wildlife. <em>Animal Conservation</em>. 23(4), 466-478.</p>
 <p>Marshall, B. M., Crane, M., <span class="custom-author">Silva, I.</span>, Strine, C. T., Jones, M. D., Hodges, C. W., Suwanwaree, P., &amp; Goode, M. (2020). No room to roam: King Cobras reduce movement in agriculture. <em>Movement Ecology</em>, 8, 33.</p>
+<hr width="100%">
 <p>Marshall, B. M., Strine, C. T., Jones, M. D., Artchawakom, T., <span class="custom-author">Silva, I.</span>, Suwanwaree, P., Artchawakom, T., Waengsothorn, S. &amp; Goode, M. (2019). Space fit for a king: spatial ecology of king cobras (Ophiophagus hannah) in Sakaerat Biosphere Reserve, Northeastern Thailand. <em>Amphibia-Reptilia</em>, 40(2), 163-178.</p>
+<hr width="100%">
 <p><span class="custom-author">Silva, I.</span>, Crane, M., Suwanwaree, P., Strine, C., &amp; Goode, M. (2018). Using dynamic Brownian Bridge Movement Models to identify home range size and movement patterns in king cobras. <em>PloS one</em>, 13(9), e0203449.</p>
 <p>Marshall, B. M., Strine, C. T., Jones, M. D., Artchawakom, T., <span class="custom-author">Silva, I.</span>, Suwanwaree, P., &amp; Goode, M. (2018). Space fit for a king: spatial ecology of king cobras (Ophiophagus hannah) in Sakaerat Biosphere Reserve, Northeastern Thailand. <em>Amphibia-Reptilia</em>, 1, 1-16.</p>
 <p>Strine, C., <span class="custom-author">Silva, I.</span>, Barnes, C. H., Marshall, B. M., Artchawakom, T., Hill, J., &amp; Suwanwaree, P. (2018). Spatial ecology of a small arboreal ambush predator, Trimeresurus macrops Kramer, 1977, in Northeast Thailand. <em>Amphibia-Reptilia</em>, 39(3), 335-345.</p>
+<hr width="100%">
 <p>Souter, N., Hughes, A., Savini, T., Rao, M., Goodale, E., Van Nice, A., Huang, N., Liu, J., Hunt, M., O’Connor, D., Heung-Lam, A., Gnuen, G., Sun, Y., &amp; <span class="custom-author">Silva, I.</span>, (2017). Building conservation capacity in Southeast Asia: Outcomes of the ATBC 2015 Asia-Pacific Chapter meeting Conservation Education symposium. <em>Applied Environmental Education &amp; Communicatio</em>n, 16 (3), 149-156.</p>
+<hr width="100%">
 <p><span class="custom-author">Silva, I.</span>, Crane, M., Artchawakom, T., Suwanwaree, P., &amp; Strine, C. T. (2016). More than meets the eye: change in pupil shape by a mock viper. <em>Frontiers in Ecology and the Environment</em>, 14(8), 453-454.</p>
 <p>Crane, M., Oliver, K., <span class="custom-author">Silva, I.</span>, Aksornneam, A., Artchawakom, T., &amp; Strine, C. T. (2016). A report of a Malayan Krait snake Bungarus candidus mortality as by-catch in a local fish trap from Nakhon Ratchasima, Thailand. <em>Tropical Conservation Science</em>, 9(1), 313-320.</p>
+<hr width="100%">
 <p><span class="custom-author">Silva, I.</span>, Strine, C., Crane, M., &amp; Artchawakom, T. (2015). Reinventing the image of the king cobra Ophiophagus hannah as a flagship species for conservation education in rural Thailand. Cambodian Journal of Natural History, 2015(1), 66.</p>
 <p>Strine, C., <span class="custom-author">Silva, I.</span>, Nadolski, B., Crane, M., Barnes, C., Artchawakom, T. &amp; Suwanwaree, P. (2015). Sexual dimorphism of tropical green pit viper Trimeresurus (Cryptelytrops) macrops in Northeast Thailand. <em>Amphibia-Reptilia</em>, 36(4), 327-338.</p>
 <p>Farneda, F.Z., Rocha, R., López-Baucells, A., Groenenberg, M., <span class="custom-author">Silva, I.</span>, Palmeirim, J. M. &amp; Meyer, C.F. (2015). Trait-related responses to habitat fragmentation in Amazonian bats. <em>Journal of Applied Ecology</em>, 52(5), 1381-1391.</p>
 <p>Strine, C., Barnes, C., <span class="custom-author">Silva, I.</span>, Nadolski, B., Artchawakom, T. Hill, J. &amp; Suwanwaree, P. (2015). First record of male combat in a wild Malayan pit viper (Calloselasma rhodostoma). <em>Asian Herpetological Research</em>, 3(2015), 237-239.</p>
+<hr width="100%">
 <p>Strine, C., <span class="custom-author">Silva, I.</span>, Crane, M., Nadolski, B., Artchawakom, T., Goode, M. &amp; Suwanwaree, P. A (2014). Mortality of a wild king cobra, Ophiophagus hannah Cantor, 1836 (Serpentes: Elapidae) from Northeast Thailand after ingesting a plastic bag. <em>Asian Herpetological Research</em>, 5(4), 284-286.</p>
+<hr width="100%">
 <p>Rocha, R., <span class="custom-author">Silva, I.</span>, dos Reis M.A.&nbsp;&amp; Rosa, G. (2013). Another frog on the menu: predation of Trachops cirrhosus (Chiroptera: Phyllostomidae) upon Osteocephalus oophagus (Anura: Hylidae). <em>Chiroptera Neotropical</em>, 18(2), 1136-1138.</p>
 
 
-</section>
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

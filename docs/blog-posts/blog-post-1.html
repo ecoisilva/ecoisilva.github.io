@@ -6,8 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="author" content="Inês Silva">
 <meta name="dcterms.date" content="2025-06-20">
-<meta name="description" content="Guide to autocorrelated home range estimation using R">
-<title>How to estimate home ranges – Inês Silva</title>
+<meta name="description" content="Inês Silva is a quantitative ecologist.">
+<title>Inês Silva</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,27 +54,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
@@ -89,10 +69,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-cb9394a61c45465f418a37cf18cd1367.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-34afa9cd112b715c69edd3663dee34db.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-c90a0892eb3dc8b8037d858794ca0158.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
@@ -124,38 +104,12 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script><script src="../site_libs/kePrint-0.0.1/kePrint.js"></script><link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script><script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script><link rel="stylesheet" href="../assets/styles.css">
-<meta property="og:title" content="How to estimate home ranges – Inês Silva">
+<meta property="og:title" content="Inês Silva">
 <meta property="og:description" content="Guide to autocorrelated home range estimation using R">
 <meta property="og:image" content="https://ecoisilva.github.io//files/blog-image1.png">
 <meta property="og:site_name" content="Inês Silva">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:title" content="How to estimate home ranges – Inês Silva">
+<meta name="twitter:title" content="Inês Silva">
 <meta name="twitter:description" content="Guide to autocorrelated home range estimation using R">
 <meta name="twitter:image" content="https://ecoisilva.github.io//files/blog-image1.png">
 <meta name="twitter:creator" content="@ecoisilva">
@@ -168,9 +122,6 @@ window.Quarto = {
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../static/logo_favicon.png" alt="" class="navbar-logo"></a>
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">Inês Silva</span>
-    </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -183,16 +134,24 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../blog.html"> 
-<span class="menu-text">Posts</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../content/publications.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../content/software.html"> 
 <span class="menu-text">Software</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../presentations/list.qmd"> 
+<span class="menu-text">Presentations</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../conferences/index.qmd"> 
+<span class="menu-text">Conferences</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog.html"> 
+<span class="menu-text">Posts</span></a>
   </li>  
 </ul>
 <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -290,7 +249,7 @@ window.Quarto = {
 <section id="introduction" class="level1 page-columns page-full"><h1>Introduction</h1>
 <p><strong><em>Home range</em></strong> estimation is a key output from animal tracking datasets, but the inherent properties of animal movement can lead traditional methods to under- or overestimated their size. <strong>Autocorrelated Kernel Density Estimation (AKDE)</strong> methods were designed to be statistically efficient while explicitly dealing with the complexities and biases of modern movement data, such as <em>autocorrelation</em>, <em>small sample sizes</em>, and <em>missing or irregularly sampled data</em>.</p>
 <aside><em>Home range</em>: the area repeatedly used throughout an animal’s lifetime for all its normal behaviors and activities, excluding occasional exploratory moves.
-</aside><p>The <strong>AKDE</strong> family of home range estimators will be run using <strong>R software</strong> (<a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>) and the <code>ctmm</code> package <span class="citation" data-cites="calabrese_ctmm_2016">(<a href="#ref-calabrese_ctmm_2016" role="doc-biblioref">Calabrese et al., 2016</a>)</span>. The techniques and mitigation measures available within this package include:</p>
+</aside><p>The <strong>AKDE</strong> family of home range estimators will be run using <strong>R software</strong> (<a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>) and the <code>ctmm</code> package [@calabrese_ctmm_2016]. The techniques and mitigation measures available within this package include:</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
@@ -342,7 +301,7 @@ window.Quarto = {
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ctmm-initiative/ctmm">ctmm</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr></section><section id="data-preparation" class="level1 page-columns page-full"><h1>Data Preparation</h1>
-<p>We will use two datasets, both available within the <code>ctmm</code> package: African buffalos (<em>Syncerus caffer</em>), and Mongolian gazelles (<em>Procapra gutturosa</em>). Information on the data collection protocol is available in Cross <em>et al.</em> <span class="citation" data-cites="cross_disease_2009">(<a href="#ref-cross_disease_2009" role="doc-biblioref">2009</a>)</span> and Fleming <em>et al.</em> <span class="citation" data-cites="fleming_fine-scale_2014">(<a href="#ref-fleming_fine-scale_2014" role="doc-biblioref">2014</a>)</span>. The <code>ctmm</code> package requires data to conform to Movebank naming conventions (<a href="https://www.movebank.org/node/2381" class="uri">https://www.movebank.org/node/2381</a>). We recommend uploading your data to Movebank (<a href="http://www.movebank.org/" class="uri">http://www.movebank.org/</a>) as this will facilitate data preparation, and ensure that your data are correctly formatted for <code>ctmm</code>. If needed, Movebank allows you to keep your data private.</p>
+<p>We will use two datasets, both available within the <code>ctmm</code> package: African buffalos (<em>Syncerus caffer</em>), and Mongolian gazelles (<em>Procapra gutturosa</em>). Information on the data collection protocol is available in Cross <em>et al.</em> [-@cross_disease_2009] and Fleming <em>et al.</em> [-@fleming_fine-scale_2014]. The <code>ctmm</code> package requires data to conform to Movebank naming conventions (<a href="https://www.movebank.org/node/2381" class="uri">https://www.movebank.org/node/2381</a>). We recommend uploading your data to Movebank (<a href="http://www.movebank.org/" class="uri">http://www.movebank.org/</a>) as this will facilitate data preparation, and ensure that your data are correctly formatted for <code>ctmm</code>. If needed, Movebank allows you to keep your data private.</p>
 <p>We will focus on the simplest data structure:</p>
 <ul>
 <li>
@@ -481,7 +440,7 @@ window.Quarto = {
 </div>
 </div>
 <aside><em>Home range crossing time</em>: the time required for an animal to cross the linear extent of its home range.
-</aside><p>Mongolian gazelles have a <strong><em>home range crossing time</em></strong> of a few months, and with a maximum longevity around 10 years, it is impossible to get a considerable <strong><em>effective sample size</em></strong> no matter the study duration <span class="citation" data-cites="fleming_overcoming_2019">(<a href="#ref-fleming_overcoming_2019" role="doc-biblioref">Fleming et al., 2019</a>)</span>. We will use this dataset to highlight how to check <strong><em>effective sample size</em></strong> and apply the <strong>parametric bootstrap</strong> mitigation.</p>
+</aside><p>Mongolian gazelles have a <strong><em>home range crossing time</em></strong> of a few months, and with a maximum longevity around 10 years, it is impossible to get a considerable <strong><em>effective sample size</em></strong> no matter the study duration [@fleming_overcoming_2019]. We will use this dataset to highlight how to check <strong><em>effective sample size</em></strong> and apply the <strong>parametric bootstrap</strong> mitigation.</p>
 <aside><em>Effective sample size (N)</em>: number of range crossings that occurred during the observation period. Can be roughly estimated by dividing the duration of the tracking dataset by the average home range crossing time parameter.
 </aside><hr></section></section></section><section id="data-analysis" class="level1 page-columns page-full"><h1>Data Analysis</h1>
 <section id="step-2.-checking-for-the-range-residency-assumption" class="level2 page-columns page-full"><h2 class="anchored" data-anchor-id="step-2.-checking-for-the-range-residency-assumption">
@@ -506,7 +465,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>We can see that the variogram flattens (<em>i.e.</em>, reaches an asymptote) after approximately <strong>1 month</strong> (<span style="color: red;">red</span> line). This also indicates at how coarse the timeseries needs to be to assume independence (no autocorrelation), and corresponds to when traditional methods —such as <strong>minimum convex polygons (MCPs)</strong> and <strong>Kernel Density Estimators (KDEs)</strong>— could be applied without violating their assumptions.</p>
+<p>We can see that the variogram flattens (<em>i.e.</em>, reaches an asymptote) after approximately <strong>1 month</strong> ([red]{style=“color: red;”} line). This also indicates at how coarse the timeseries needs to be to assume independence (no autocorrelation), and corresponds to when traditional methods —such as <strong>minimum convex polygons (MCPs)</strong> and <strong>Kernel Density Estimators (KDEs)</strong>— could be applied without violating their assumptions.</p>
 </section><section id="step-3.-selecting-the-best-fit-movement-model-through-model-selection" class="level2"><h2 class="anchored" data-anchor-id="step-3.-selecting-the-best-fit-movement-model-through-model-selection">
 <strong>Step 3.</strong> – Selecting the best-fit movement model through <em>model selection</em>
 </h2>
@@ -600,7 +559,7 @@ window.Quarto = {
 <span><span class="va">UD2_ML</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ctmm/man/akde.html">akde</a></span><span class="op">(</span><span class="va">animal2_gazelle</span>, <span class="va">FIT2_ML</span><span class="op">)</span></span>
 <span><span class="va">UD2_pHREML</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ctmm/man/akde.html">akde</a></span><span class="op">(</span><span class="va">animal2_gazelle</span>, <span class="va">FIT2_pHREML</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>With <code>animal2_gazelle</code>, we have a more substantial area underestimation by ML compared to pHREML (~15.2%). We can also see that our <strong><em>effective sample size</em></strong> is only 4.5, with an <strong><em>absolute sample size</em></strong> of 49 (<em>N</em> <span class="math inline">\(\ll\)</span> <em>n</em>).</p>
+<p>With <code>animal2_gazelle</code>, we have a more substantial area underestimation by ML compared to pHREML (~15.2%). We can also see that our <strong><em>effective sample size</em></strong> is only 4.5, with an <strong><em>absolute sample size</em></strong> of 49 (<em>N</em> ≪ <em>n</em>).</p>
 <div class="cell">
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span> <span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">UD2_ML</span><span class="op">)</span><span class="op">$</span><span class="va">CI</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">UD2_pHREML</span><span class="op">)</span><span class="op">$</span><span class="va">CI</span><span class="op">[</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">]</span> <span class="op">)</span> <span class="op">*</span> <span class="fl">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -625,7 +584,7 @@ window.Quarto = {
 0.04875393 </code></pre>
 </div>
 </div>
-<p>The bias is currently <span class="math inline">\(\mathcal{O}(5\%)\)</span> (“in the order of” 5%). As such, we will run parametric bootstrapping for <code>animal2_gazelle</code>. The relative error target is 1% by default (<code>argument error = 0.01</code>), but can be adjusted if necessary.</p>
+<p>The bias is currently 𝒪(5%) (“in the order of” 5%). As such, we will run parametric bootstrapping for <code>animal2_gazelle</code>. The relative error target is 1% by default (<code>argument error = 0.01</code>), but can be adjusted if necessary.</p>
 <div class="cell">
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">start_time</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># start recording running time</span></span>
 <span><span class="va">BOOT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ctmm/man/ctmm.boot.html">ctmm.boot</a></span><span class="op">(</span><span class="va">animal2_gazelle</span>, <span class="va">FIT2_pHREML</span>, trace <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
@@ -667,24 +626,10 @@ window.Quarto = {
 <p>– <em>Home range crossing time</em>: the time required for an animal to cross the linear extent of its home range.</p>
 <p>– <em>Absolute sample size</em> (<em>n</em>): the number of observations (fixes) in a dataset.</p>
 <p>– <em>Effective sample size</em> (<em>N</em>): number of range crossings that occurred during the observation period. Can be roughly estimated by dividing the duration of the tracking dataset by the average <em>home range crossing time</em> parameter.</p>
-</section><section id="references" class="level1">
+</section><section id="references" class="level1"><h1>References</h1>
 
 
-
-</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
-<div id="ref-calabrese_ctmm_2016" class="csl-entry" role="listitem">
-Calabrese, J. M., Fleming, C. H., &amp; Gurarie, E. (2016). Ctmm: <span>An</span> r package for analyzing animal relocation data as a continuous‐time stochastic process. <em>Methods in Ecology and Evolution</em>, <em>7</em>(9), 1124–1132.
-</div>
-<div id="ref-cross_disease_2009" class="csl-entry" role="listitem">
-Cross, P. C., Heisey, D. M., Bowers, J. A., Hay, C. T., Wolhuter, J., Buss, P., Hofmeyr, M., Michel, A. L., Bengis, R. G., &amp; Bird, T. L. F. (2009). Disease, predation and demography: Assessing the impacts of bovine tuberculosis on <span>African</span> buffalo by monitoring at individual and population levels. <em>Journal of Applied Ecology</em>, <em>46</em>(2), 467–475.
-</div>
-<div id="ref-fleming_fine-scale_2014" class="csl-entry" role="listitem">
-Fleming, C. H., Calabrese, J. M., Mueller, T., Olson, K. A., Leimgruber, P., &amp; Fagan, W. F. (2014). From fine-scale foraging to home ranges: A semivariance approach to identifying movement modes across spatiotemporal scales. <em>The American Naturalist</em>, <em>183</em>(5), E154–E167.
-</div>
-<div id="ref-fleming_overcoming_2019" class="csl-entry" role="listitem">
-Fleming, C. H., Noonan, M. J., Medici, E. P., &amp; Calabrese, J. M. (2019). Overcoming the challenge of small effective sample sizes in home‐range estimation. <em>Methods in Ecology and Evolution</em>, <em>10</em>(10), 1679–1689.
-</div>
-</div></section></div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");

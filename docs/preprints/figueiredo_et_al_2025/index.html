@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Inês Silva">
+<meta name="dcterms.date" content="2025-08-01">
 <meta name="description" content="Inês Silva is a quantitative ecologist.">
 
 <title>Inês Silva</title>
@@ -22,27 +23,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href=".//static/logo_favicon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-cb9394a61c45465f418a37cf18cd1367.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c90a0892eb3dc8b8037d858794ca0158.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../..//static/logo_favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-cb9394a61c45465f418a37cf18cd1367.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c90a0892eb3dc8b8037d858794ca0158.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,22 +106,21 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<link rel="stylesheet" href="./assets/custom.scss">
 
 
 <meta property="og:title" content="Inês Silva">
-<meta property="og:description" content="Postdoctoral Researcher  @ CASUS-HZDR">
-<meta property="og:image" content="https://ecoisilva.github.io/static/website_banner.png">
+<meta property="og:description" content="A mathematical framework for range-resident species">
+<meta property="og:image" content="https://ecoisilva.github.io//static/logo.png">
 <meta property="og:site_name" content="Inês Silva">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:height" content="2250">
-<meta property="og:image:width" content="4000">
+<meta property="og:image:height" content="359">
+<meta property="og:image:width" content="385">
 <meta name="twitter:title" content="Inês Silva">
-<meta name="twitter:description" content="Postdoctoral Researcher  @ CASUS-HZDR">
-<meta name="twitter:image" content="https://ecoisilva.github.io/static/website_banner.png">
+<meta name="twitter:description" content="A mathematical framework for range-resident species">
+<meta name="twitter:image" content="https://ecoisilva.github.io//static/logo.png">
 <meta name="twitter:creator" content="@ecoisilva">
-<meta name="twitter:image-height" content="2250">
-<meta name="twitter:image-width" content="4000">
+<meta name="twitter:image-height" content="359">
+<meta name="twitter:image-width" content="385">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -96,8 +131,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./static/logo_favicon.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../static/logo_favicon.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -107,33 +142,33 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./content/publications.html"> 
+    <a class="nav-link" href="../../content/publications.html"> 
 <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./content/software.html"> 
+    <a class="nav-link" href="../../content/software.html"> 
 <span class="menu-text">Software</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./presentations/list.qmd"> 
+    <a class="nav-link" href="../../presentations/list.qmd"> 
 <span class="menu-text">Presentations</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./conferences/index.qmd"> 
+    <a class="nav-link" href="../../conferences/index.qmd"> 
 <span class="menu-text">Conferences</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Posts</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./content/about.html"> 
+    <a class="nav-link" href="../../content/about.html"> 
 <span class="menu-text">About me</span></a>
   </li>  
 </ul>
@@ -145,33 +180,144 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation">Citation</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<div class="quarto-about-marquee column-page">
-  <div class="about-image-container">
-    <img src="static/website_banner.png" class="about-image " style="width: 60em;">
-  </div>
-  <div class="about-contents">
-    <header id="title-block-header" class="quarto-title-block default">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Inês Silva</h1>
-<p class="subtitle lead">Postdoctoral Researcher <span style="color:#ffbf00"> @ CASUS-HZDR</span></p>
-</div>
-<div class="quarto-title-meta column-page">
+<h1 class="title">How animal movement influences wildlife vehicle collision risk</h1>
+<p class="subtitle lead"><span style="color:#ffffff">A mathematical framework for</span> <span style="color:#ffbf00">range-resident species</span></p>
+  <div class="quarto-categories">
+    <div class="quarto-category">movement ecology</div>
+    <div class="quarto-category">road ecology</div>
+    <div class="quarto-category">wildlife-vehicle collisions</div>
   </div>
-</header> <main class="content column-page" id="quarto-document-content">
-<div class="btn-group btn-centered" role="group" aria-label="Social Links">
-<p><a href="mailto:i-simoes-silva@hzdr.de" class="btn btn-secondary" role="button" data-toggle="data" title="email"><i class="fa-solid fa-envelope" aria-label="envelope"></i> Email</a> <a href="https://www.github.com/ecoisilva" class="btn btn-secondary" role="button" data-toggle="data" title="github"><i class="fa-brands fa-github" aria-label="github"></i> GitHub</a> <a href="https://scholar.google.com/citations?hl=en&amp;user=dRvr6IYAAAA" class="btn btn-secondary" role="button" data-toggle="data" title="scholar"><i class="fa-solid fa-graduation-cap" aria-label="graduation-cap"></i> Scholar</a> <a href="https://bsky.app/profile/ecoisilva.bsky.social" class="btn btn-secondary" role="button" data-toggle="data" title="bluesky"><i class="fa-brands fa-bluesky" aria-label="bluesky"></i> Bluesky</a></p>
+  </div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliations</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Benjamin Garcia de Figueiredo </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Universidade Estadual Paulista
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Inês Silva <a href="https://orcid.org/0000-0003-4850-6193" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Center for Advanced Systems Understanding
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Michael Noonan </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of British Columbia Okanagan
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Christen Fleming </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Central Florida
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">William Fagan </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Maryland
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Justin Calabrese </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Center for Advanced Systems Understanding
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Ricardo Martinez-Garcia </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Center for Advanced Systems Understanding
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 1, 2025</p>
+    </div>
+  </div>
+  
+    
+    <div>
+    <div class="quarto-title-meta-heading">Doi</div>
+    <div class="quarto-title-meta-contents">
+      <p class="doi">
+        <a href="https://doi.org/arXiv:2507.17058">arXiv:2507.17058</a>
+      </p>
+    </div>
+  </div>
+  </div>
+  
+
+
+</header>
+
+
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Wildlife-vehicle collisions (WVC) threaten both biodiversity and human safety worldwide. Despite empirical efforts to characterize the major determinants of WVC risk and optimize mitigation strategies, we still lack a theoretical framework linking traffic, landscape, and individual movement features to collision risk. Here, we introduce such a framework by leveraging recent advances in movement ecology and reaction-diffusion stochastic processes with partially absorbing boundaries. Focusing on range-resident terrestrial mammals – responsible for most fatal WVCs – we model interactions with a single linear road and derive exact expressions for key survival statistics, including mean collision time and road-induced lifespan reduction. These quantities are expressed in terms of measurable parameters, such as traffic intensity or road width, and movement parameters that can be robustly estimated from relocation data, such as home-range crossing times, home-range sizes, or distance between home-range center and road. Therefore, our work provides an effective theoretical framework integrating movement and road ecology, laying the foundation for data-driven, evidence-based strategies to mitigate WVCs and promote safer, more sustainable transportation networks.</p>
+</section>
+<section id="citation" class="level2">
+<h2 class="anchored" data-anchor-id="citation">Citation</h2>
+<div class="ref-bibtex-block">
+<div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">de2025animal</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>={How animal movement influences wildlife-vehicle collision risk: a mathematical framework for range-resident species},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>={de Figueiredo, Benjamin Garcia and Silva, In{<span class="ch">\^</span>e}s and Noonan, Michael J and Fleming, Christen H and Fagan, William F and Calabrese, Justin M and Martinez-Garcia, Ricardo},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>={arXiv preprint arXiv:2507.17058},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>={2025}</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="ref-hanging-indent">
+<p>de Figueiredo, B. G., <span class="custom-author">Silva, I.</span>, Noonan, M. J., Fleming, C. H., Fagan, W. F., Calabrese, J. M., &amp; Martinez-Garcia, R. (2025). How animal movement influences wildlife-vehicle collision risk: a mathematical framework for range-resident species. <i>arXiv</i>. DOI: <a href="https://arxiv.org/abs/2507.17058"><code>arXiv:2507.17058</code></a></p>
 </div>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> 
-  </div>
-</div>
- <!-- /main -->
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -192,6 +338,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
@@ -596,7 +749,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="./contact.html">
+    <a class="nav-link" href="../../contact.html">
 <p><i class="fa-solid fa-envelope" aria-label="envelope"></i> Contact me</p>
 </a>
   </li>  
