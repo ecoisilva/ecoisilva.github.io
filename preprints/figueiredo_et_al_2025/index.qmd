@@ -1,0 +1,66 @@
+---
+title: "How animal movement influences wildlife vehicle collision risk"
+subtitle: "<span style='color:#ffffff'>A mathematical framework for</span> <span style='color:#ffbf00'>range-resident species</span>"
+date: 2025-08-01
+author:
+  - name: Benjamin Garcia de Figueiredo
+    affiliation: Universidade Estadual Paulista
+  - name: Inês Silva
+    affiliation: Center for Advanced Systems Understanding
+    orcid: "{{< meta orcid-meta >}}"
+  - name: Michael Noonan
+    affiliation: University of British Columbia Okanagan
+  - name: Christen Fleming
+    affiliation: University of Central Florida
+  - name: William Fagan
+    affiliation: University of Maryland
+  - name: Justin Calabrese
+    affiliation: Center for Advanced Systems Understanding
+  - name: Ricardo Martinez-Garcia
+    affiliation: Center for Advanced Systems Understanding
+
+categories:
+  - movement ecology
+  - road ecology
+  - wildlife-vehicle collisions
+pub-info:
+  reference: >-
+    de Figueiredo, B. G., <span class="custom-author">Silva, I.</span>, Noonan, M. J., Fleming, C. H., Fagan, W. F., Calabrese, J. M., & Martinez-Garcia, R. (2025). How animal movement influences wildlife-vehicle collision risk: a mathematical framework for range-resident species. <i>arXiv</i>. DOI: <a href="https://arxiv.org/abs/2507.17058"><code>arXiv:2507.17058</code></a>
+  links:
+    - name: Preprint
+      url: 2507.17058v1.pdf
+      icon: fa-solid fa-file-pdf
+      local: true
+    # - name: Published paper
+    #   url: https://add.here
+    #   icon: fa-solid fa-scroll
+    # - name: Add to Zotero
+    #   url: https://www.zotero.org/save?type=doi&q=***
+    #   icon: ai ai-zotero
+  extra: >-
+doi: "arXiv:2507.17058"
+# image: intro.png
+# alt: "Alt here"
+---
+
+## Abstract
+
+Wildlife-vehicle collisions (WVC) threaten both biodiversity and human safety worldwide. Despite empirical efforts to characterize the major determinants of WVC risk and optimize mitigation strategies, we still lack a theoretical framework linking traffic, landscape, and individual movement features to collision risk. Here, we introduce such a framework by leveraging recent advances in movement ecology and reaction-diffusion stochastic processes with partially absorbing boundaries. Focusing on range-resident terrestrial mammals -- responsible for most fatal WVCs -- we model interactions with a single linear road and derive exact expressions for key survival statistics, including mean collision time and road-induced lifespan reduction. These quantities are expressed in terms of measurable parameters, such as traffic intensity or road width, and movement parameters that can be robustly estimated from relocation data, such as home-range crossing times, home-range sizes, or distance between home-range center and road. Therefore, our work provides an effective theoretical framework integrating movement and road ecology, laying the foundation for data-driven, evidence-based strategies to mitigate WVCs and promote safer, more sustainable transportation networks. 
+
+## Citation
+
+<div class="ref-bibtex-block">
+```bibtex
+@article{de2025animal,
+  title={How animal movement influences wildlife-vehicle collision risk: a mathematical framework for range-resident species},
+  author={de Figueiredo, Benjamin Garcia and Silva, In{\^e}s and Noonan, Michael J and Fleming, Christen H and Fagan, William F and Calabrese, Justin M and Martinez-Garcia, Ricardo},
+  journal={arXiv preprint arXiv:2507.17058},
+  year={2025}
+}
+```
+</div>
+
+<div class="ref-hanging-indent">
+de Figueiredo, B. G., <span class="custom-author">Silva, I.</span>, Noonan, M. J., Fleming, C. H., Fagan, W. F., Calabrese, J. M., & Martinez-Garcia, R. (2025). How animal movement influences wildlife-vehicle collision risk: a mathematical framework for range-resident species. <i>arXiv</i>. DOI: <a href="https://arxiv.org/abs/2507.17058"><code>arXiv:2507.17058</code></a>
+</div>
+

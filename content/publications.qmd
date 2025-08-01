@@ -1,6 +1,19 @@
 ---
-pagetitle: "Publications"
-format: html
+title: "Research"
+listing:
+  - id: preprints
+    contents: ../preprints/*/index.qmd
+    sort: "date desc"
+    template: ../assets/html/listing_research.ejs
+    categories: true
+  - id: articles
+    contents: ../manuscripts/*/index.qmd
+    sort: "date desc"
+    template: ../assets/html/listing_research.ejs
+    categories: true
+page-layout: full
+include-back-link: false
+toc-location: right
 ---
 
 ```{=html}
@@ -8,27 +21,24 @@ format: html
 body {
     text-align: justify;
 }
-.custom-author {
-  color: #009da0;
-  font-family: 'Crimson Pro' !important;
-  font-style: italic;
-  font-size: 20px;
-  font-weight: 600 !important;
-}
 </style>
 ```
 
-## <i class="fa-solid fa-file-lines"></i> Publications
+My research focused on both *applied* and *quantitative ecology*—the application of statistical and computational methods to understand ecological patterns and processes. I focus on <span style="color:#ffbf00"**movement ecology**</span> and <span style="color:#ffbf00">**road ecology**</span>, and I’m especially interested in study design, and the development of reproducible workflows to support ecological decision-making. I am also interested in understanding the direct and indirect impacts of roads on vertebrate communities.
 
-<!-- [Data](){.btn-sm .btn .disabled .btn-primary role="button" data-toggle="data" title="data"} -->
+<br>
 
-#### Pre-prints
+## <i class="fa-solid fa-file-lines"></i> Preprints
 
-Alston,  J. M., Fleming, C. H., Noonan, M. J., Tucker, M. A., <span class="custom-author">Silva, I.</span>, Folta, C., Akre, T.S., Ali, A.H., Belant, J.L., Beyer, D., Blaum, N., & Calabrese, J. M. Clarifying space use concepts in ecology: range vs. occurrence distributions. *bioRxiv.* [preprint]
+:::{#preprints}
+:::
+
+Alston, J. M., Fleming, C. H., Noonan, M. J., Tucker, M. A., <span class="custom-author">Silva, I.</span>, Folta, C., Akre, T.S., Ali, A.H., Belant, J.L., Beyer, D., Blaum, N., & Calabrese, J. M. Clarifying space use concepts in ecology: range vs. occurrence distributions. *bioRxiv.* [preprint]
 
 ::: {.btn-group role="group" aria-label="Publication Links"}
 [{{< fa link >}} Link](https://www.biorxiv.org/content/10.1101/2022.09.29.509951v1){.btn-sm .btn .btn-primary role="button" data-toggle="pdf" title="Link"}
 :::
+
 
 Ivimey-Cook, E., Sanchez-Tojar, A., Culina, A., Roche, D., Berberi, I., Almeida, R. A., ... <span class="custom-author">Silva, I.</span>, … & Moran, N. P. The state of code-and data-sharing policies across journals in ecology and evolution. *ecoevoRxiv* [preprint]
 
@@ -36,9 +46,16 @@ Ivimey-Cook, E., Sanchez-Tojar, A., Culina, A., Roche, D., Berberi, I., Almeida,
 [{{< fa link >}} Link](https://ecoevorxiv.org/repository/view/8417/){.btn-sm .btn .btn-primary role="button" data-toggle="pdf" title="Link"}
 :::
 
-<hr width="100%">
+<!-- [Data](){.btn-sm .btn .disabled .btn-primary role="button" data-toggle="data" title="data"} -->
 
-#### 2025
+<br>
+
+## <i class="fa-solid fa-file-lines"></i> Journal articles
+
+:::{#articles}
+:::
+
+<hr width="100%">
 
 Grilo, C., Neves, T., Bates, J., le Roux, A., Medrano-Vizcaíno, P., Quaranta, M., <span class="custom-author">Silva, I.</span>, Soanes, K., & Wang, Y. (2025). Global Roadkill Data: a dataset on terrestrial vertebrate mortality caused by collision with vehicles. *Scientific Data*, 12(1), 505.
 
@@ -61,6 +78,8 @@ Noble, D. W., Xirocostas, Z. A., Wu, N. C., Martinig, A. R., Almeida, R. A., Bai
 
 <span class="custom-author">Silva, I.</span>, & Calabrese, J. M. (2024). Emerging opportunities for wildlife conservation with sustainable autonomous transportation. *Frontiers in Ecology and the Environment*, 22(2), e2697.
 
+<hr width="100%">
+
 Ivimey-Cook, E. R., Pick, J. L., Bairos-Novak, K., Culina, A., Gould, E., Grainger, M., Marshall, B., Moreau, D., Paquet, M., Royauté, R. and Sanchez-Tojar, A., <span class="custom-author">Silva, I.</span>, & Windecker, S. (2023). Implementing code review in the scientific workflow: Insights from ecology and evolutionary biology. *Journal of Evolutionary Biology*, 36(10), 1347-1356.
 
 <span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., & Calabrese, J. M. (2023). *movedesign: Shiny R app to evaluate sampling design for animal movement studies.* Methods in Ecology and Evolution, **14(9)**, 2216-2225.
@@ -68,9 +87,13 @@ Ivimey-Cook, E. R., Pick, J. L., Bairos-Novak, K., Culina, A., Gould, E., Graing
 <!-- [doi.org/10.1111/2041-210X.14153](https://besjournals.onlinelibrary.wiley.com/doi/abs/10.1111/2041-210X.14153)   -->
 <!-- [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?logo=github)](https://github.com/ecoisilva/movedesign) -->
 
-<span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Alston, J., Folta, C., Fagan, W. F., & Calabrese, J. M. (2021). Autocorrelation-informed home range estimation: a review and practical guide. Methods in Ecology and Evolution, 13(3), 534-544.
+<hr width="100%">
 
 Montano, Y., Marshall, B. M., Ward, M., <span class="custom-author">Silva, I.</span>, Artchawakom, T., Waengsothorn, S., & Strine, C. T. (2022). A stable home: Autocorrelated Kernel Density Estimated home ranges of the critically endangered Elongated tortoise. *Herpetological Journal*, 32(3), 120-129.
+
+<hr width="100%">
+
+<span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Alston, J., Folta, C., Fagan, W. F., & Calabrese, J. M. (2021). Autocorrelation-informed home range estimation: a review and practical guide. Methods in Ecology and Evolution, 13(3), 534-544.
 
 Jones, M. D., Marshall, B. M., Smith, S. N., Crane, M., <span class="custom-author">Silva, I.</span>, Artchawakom, T., Waengsothorn, S., Wüster, W., Goode, M. & Strine, C. T. (2021). How do King Cobras move across a major highway? Unintentional wildlife crossing structures may facilitate movement. *Ecology and Evolution*, 12(3), e8691.
 
@@ -82,6 +105,8 @@ Crane, M., <span class="custom-author">Silva, I.</span>, Grainger, M. J., & Gale
 
 <span class="custom-author">Silva, I.</span>, Crane, M., Marshall, B. M., & Strine, C. T. (2020). Reptiles on the wrong track? Moving beyond traditional estimators with dynamic Brownian Bridge Movement Models. *Movement Ecology*, 8(1), 1-13.
 
+<hr width="100%">
+
 Jones, M. D., Crane, M. S., <span class="custom-author">Silva, I.</span>, M., Artchawakom, T., Waengsothorn, S., Suwanwaree, P., Strine, C. T. & Goode, M. (2020). Supposed snake specialist consumes monitor lizards: diet and trophic implications of king cobra feeding ecology. *Ecology*, 101(10), e03085. 
 
 Rocha, R., López-Baucells, A., Farneda, F. Z., Ferreira, D. F., <span class="custom-author">Silva, I.</span>, Acácio, M., Palmeirim, J. M., & Meyer, C. F. (2020). Second-growth and small forest clearings have little effect on the temporal activity patterns of Amazonian phyllostomid bats. *Current Zoology*, 66(2), 145-153.
@@ -92,7 +117,11 @@ Rocha, R., López-Baucells, A., Farneda, F. Z., Ferreira, D. F., <span class="cu
 
 Marshall, B. M., Crane, M., <span class="custom-author">Silva, I.</span>, Strine, C. T., Jones, M. D., Hodges, C. W., Suwanwaree, P., & Goode, M. (2020). No room to roam: King Cobras reduce movement in agriculture. *Movement Ecology*, 8, 33.
 
+<hr width="100%">
+
 Marshall, B. M., Strine, C. T., Jones, M. D., Artchawakom, T., <span class="custom-author">Silva, I.</span>, Suwanwaree, P., Artchawakom, T., Waengsothorn, S. & Goode, M. (2019). Space fit for a king: spatial ecology of king cobras (Ophiophagus hannah) in Sakaerat Biosphere Reserve, Northeastern Thailand. *Amphibia-Reptilia*, 40(2), 163-178.
+
+<hr width="100%">
 
 <span class="custom-author">Silva, I.</span>, Crane, M., Suwanwaree, P., Strine, C., & Goode, M. (2018). Using dynamic Brownian Bridge Movement Models to identify home range size and movement patterns in king cobras. *PloS one*, 13(9), e0203449.
 
@@ -100,11 +129,17 @@ Marshall, B. M., Strine, C. T., Jones, M. D., Artchawakom, T., <span class="cust
 
 Strine, C., <span class="custom-author">Silva, I.</span>, Barnes, C. H., Marshall, B. M., Artchawakom, T., Hill, J., & Suwanwaree, P. (2018). Spatial ecology of a small arboreal ambush predator, Trimeresurus macrops Kramer, 1977, in Northeast Thailand. *Amphibia-Reptilia*, 39(3), 335-345.
 
+<hr width="100%">
+
 Souter, N., Hughes, A., Savini, T., Rao, M., Goodale, E., Van Nice, A., Huang, N., Liu, J., Hunt, M., O’Connor, D., Heung-Lam, A., Gnuen, G., Sun, Y., & <span class="custom-author">Silva, I.</span>, (2017). Building conservation capacity in Southeast Asia: Outcomes of the ATBC 2015 Asia-Pacific Chapter meeting Conservation Education symposium. *Applied Environmental Education & Communicatio*n, 16 (3), 149-156.
+
+<hr width="100%">
 
 <span class="custom-author">Silva, I.</span>, Crane, M., Artchawakom, T., Suwanwaree, P., & Strine, C. T. (2016). More than meets the eye: change in pupil shape by a mock viper. *Frontiers in Ecology and the Environment*, 14(8), 453-454.
 
 Crane, M., Oliver, K., <span class="custom-author">Silva, I.</span>, Aksornneam, A., Artchawakom, T., & Strine, C. T. (2016). A report of a Malayan Krait snake Bungarus candidus mortality as by-catch in a local fish trap from Nakhon Ratchasima, Thailand. *Tropical Conservation Science*, 9(1), 313-320.
+
+<hr width="100%">
 
 <span class="custom-author">Silva, I.</span>, Strine, C., Crane, M., & Artchawakom, T. (2015). Reinventing the image of the king cobra Ophiophagus hannah as a flagship species for conservation education in rural Thailand. Cambodian Journal of Natural History, 2015(1), 66.
 
@@ -114,6 +149,10 @@ Farneda, F.Z., Rocha, R., López-Baucells, A., Groenenberg, M., <span class="cus
 
 Strine, C., Barnes, C., <span class="custom-author">Silva, I.</span>, Nadolski, B., Artchawakom, T. Hill, J. & Suwanwaree, P. (2015). First record of male combat in a wild Malayan pit viper (Calloselasma rhodostoma). *Asian Herpetological Research*, 3(2015), 237-239.
 
+<hr width="100%">
+
 Strine, C., <span class="custom-author">Silva, I.</span>, Crane, M., Nadolski, B., Artchawakom, T., Goode, M. & Suwanwaree, P. A (2014). Mortality of a wild king cobra, Ophiophagus hannah Cantor, 1836 (Serpentes: Elapidae) from Northeast Thailand after ingesting a plastic bag. *Asian Herpetological Research*, 5(4), 284-286.
+
+<hr width="100%">
 
 Rocha, R., <span class="custom-author">Silva, I.</span>, dos Reis M.A. & Rosa, G. (2013). Another frog on the menu: predation of Trachops cirrhosus (Chiroptera: Phyllostomidae) upon Osteocephalus oophagus (Anura: Hylidae). *Chiroptera Neotropical*, 18(2), 1136-1138.

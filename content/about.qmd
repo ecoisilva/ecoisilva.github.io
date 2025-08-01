@@ -1,5 +1,6 @@
 ---
 title: "About me"
+# subtitle: "Add subtitle here"
 image: images/website_photo.png
 about: 
   template: jolla
@@ -8,18 +9,30 @@ about:
 toc: false
 ---
 
-::: {.btn-group .btn-centered role="group" aria-label="Social Links"}
-[{{< fa envelope >}} Email](mailto:i-simoes-silva@hzdr.de){.btn .btn-secondary .btn role="button" data-toggle="data" title="email"} [{{< fa brands github >}} Github](https://www.github.com/ecoisilva){.btn .btn-secondary .btn role="button" data-toggle="data" title="github"} [{{< fa graduation-cap >}} Scholar](https://scholar.google.com/citations?hl=en&user=dRvr6IYAAAA){.btn .btn-secondary .btn role="button" data-toggle="data" title="scholar"} [{{< fa brands bluesky fa-1x>}} Bluesky](https://bsky.app/profile/ecoisilva.bsky.social){.btn .btn-secondary .btn role="button" data-toggle="data" title="bluesky"}
+::: {style="text-align: justify;"}
+I am a postdoctoral researcher in the Earth System Science group at the Center for Advanced Systems Understanding <a href="https://www.casus.science/" style="color: #ffbf00 !important;">(CASUS)</a>, in Görlitz, Germany.
+
+My research focuses on movement ecology study design, and animal-road interactions. My PhD was based in Thailand, working on the spatial-temporal patterns of wildlife-vehicle collisions in a Thai biodiversity hotspot, with a secondary focus on bat communities. I am particularly interested in movement ecology and road ecology.
+
+### 🚧 I’m currently working on:<br>
+— [`movedesign`](https://github.com/ecoisilva/movedesign), an interactive Shiny app to support movement study design, leveraging the `ctmm` package.<br>
+— [`studydesign_ms`](https://github.com/ecoisilva/studydesign_ms), an extension to the workflow presented in the first `movedesign` manuscript, designed to facilitate study design with a focus on population-level inferences.
+
+
+### 📄 Recently, I have worked on:<br> 
+— [`AKDE_minireview_ms`](https://github.com/ecoisilva/AKDE_minireview), a comprehensive review and tutorial for autocorrelated home range estimation using `R`.
+
+### 💬 I’m looking to collaborate on:<br> 
+- Animal movement analyses<br>
+- Study design for animal tracking projects<br>
+- Wildlife-vehicle collision analysis and mitigation<br>
+- Open-source tools and reproducible science in ecology<br>
+
+If you’re looking for a collaborator, advice, or assistance on any movement or road ecology topic, please <a href="mailto:i.simoes-silva@hzdr.de" style="color: #ffbf00 !important;">reach out</a>. I’d be happy to help!
+
 :::
 
-<br>
+::: {.btn-group .btn-centered role="group" aria-label="Social Links"}
+[{{< fa envelope >}} Email](mailto:i-simoes-silva@hzdr.de){.btn .btn-secondary .btn role="button" data-toggle="data" title="email"} [{{< fa brands github >}} GitHub](https://www.github.com/ecoisilva){.btn .btn-secondary .btn role="button" data-toggle="data" title="github"} [{{< fa graduation-cap >}} Scholar](https://scholar.google.com/citations?hl=en&user=dRvr6IYAAAA){.btn .btn-secondary .btn role="button" data-toggle="data" title="scholar"} [{{< fa brands bluesky fa-1x>}} Bluesky](https://bsky.app/profile/ecoisilva.bsky.social){.btn .btn-secondary .btn role="button" data-toggle="data" title="bluesky"}
+:::
 
-## Hi there 👋
-
-I am a postdoctoral researcher in the Earth System Science group at the Center for Advanced Systems Understanding ([CASUS](https://www.casus.science/)), located in Görlitz, Germany. I am studying animal-road interactions and movement ecology study design. My PhD was based in Thailand, working on the spatial-temporal patterns of wildlife-vehicle collisions in a Thai biodiversity hotspot, with a secondary focus on bat communities. I am particularly interested in movement ecology and road ecology.
-
-🚧 I’m currently working on:<br> — [`{movedesign}`](https://github.com/ecoisilva/movedesign), a `{Shiny}` application to assist in movement study design that leverages the `{ctmm}` R package;
-
-🔭 Recently, I have worked on:<br> — [`{AKDE_minireview_ms}`](https://github.com/ecoisilva/AKDE_minireview), a review and tutorial to autocorrelated home range estimation using `{R}`.
-
-💡 I’m looking to collaborate on:<br> — Anything related to animal movement analyses or the study design of tracking projects. I am also really interested in anything to do with wildlife-vehicle collisions or wildlife-road interactions. If you’re looking for collaborations, assistance or advice in these areas, feel free to reach out. I’d be happy to help!

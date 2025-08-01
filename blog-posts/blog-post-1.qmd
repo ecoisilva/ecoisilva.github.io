@@ -3,14 +3,14 @@ title: "How to estimate home ranges"
 author: "Inês Silva"
 image: /files/blog-image1.png
 image-height: "5%"
-date: "`r Sys.Date()`"
+date: 2025-06-20
 description: "Guide to autocorrelated home range estimation using `R`"
 categories:
   - movement ecology
   - home range
 title-meta: "How to estimate home ranges"
 author-meta: "Inês Silva"
-date-meta: "`r Sys.Date()`"
+date-meta: 2025-06-20
 image-meta: /files/blog-image1.png
 bibliography: references/references.bib
 csl: references/mee.csl
@@ -37,7 +37,7 @@ This tutorial is a companion piece to a manuscript titled ***"Autocorrelation-in
 
 <aside>*Home range*: the area repeatedly used throughout an animal's lifetime for all its normal behaviors and activities, excluding occasional exploratory moves.</aside>
 
-The **AKDE** family of home range estimators will be run using **R software** (<https://www.r-project.org/>) and the `ctmm` package [@calabrese_ctmm_2016]. The techniques and mitigation measures available within this package include:
+The **AKDE** family of home range estimators will be run using **R software** (<https://www.r-project.org/>) and the `ctmm` package \[\@calabrese_ctmm_2016\]. The techniques and mitigation measures available within this package include:
 
 ```{r, include = FALSE}
 
@@ -93,7 +93,7 @@ library(ctmm)
 
 # Data Preparation
 
-We will use two datasets, both available within the `ctmm` package: African buffalos (*Syncerus caffer*), and Mongolian gazelles (*Procapra gutturosa*). Information on the data collection protocol is available in Cross *et al.* [-@cross_disease_2009] and Fleming *et al.* [-@fleming_fine-scale_2014]. The `ctmm` package requires data to conform to Movebank naming conventions (<https://www.movebank.org/node/2381>). We recommend uploading your data to Movebank (<http://www.movebank.org/>) as this will facilitate data preparation, and ensure that your data are correctly formatted for `ctmm`. If needed, Movebank allows you to keep your data private.
+We will use two datasets, both available within the `ctmm` package: African buffalos (*Syncerus caffer*), and Mongolian gazelles (*Procapra gutturosa*). Information on the data collection protocol is available in Cross *et al.* \[-\@cross_disease_2009\] and Fleming *et al.* \[-\@fleming_fine-scale_2014\]. The `ctmm` package requires data to conform to Movebank naming conventions (<https://www.movebank.org/node/2381>). We recommend uploading your data to Movebank (<http://www.movebank.org/>) as this will facilitate data preparation, and ensure that your data are correctly formatted for `ctmm`. If needed, Movebank allows you to keep your data private.
 
 We will focus on the simplest data structure:
 
@@ -180,7 +180,7 @@ plot(animal2_gazelle)
 
 <aside>*Home range crossing time*: the time required for an animal to cross the linear extent of its home range.</aside>
 
-Mongolian gazelles have a ***home range crossing time*** of a few months, and with a maximum longevity around 10 years, it is impossible to get a considerable ***effective sample size*** no matter the study duration [@fleming_overcoming_2019]. We will use this dataset to highlight how to check ***effective sample size*** and apply the **parametric bootstrap** mitigation.
+Mongolian gazelles have a ***home range crossing time*** of a few months, and with a maximum longevity around 10 years, it is impossible to get a considerable ***effective sample size*** no matter the study duration \[\@fleming_overcoming_2019\]. We will use this dataset to highlight how to check ***effective sample size*** and apply the **parametric bootstrap** mitigation.
 
 <aside>*Effective sample size (N)*: number of range crossings that occurred during the observation period. Can be roughly estimated by dividing the duration of the tracking dataset by the average home range crossing time parameter.</aside>
 
@@ -210,7 +210,7 @@ abline(v = 1, col = "red", lty = 2)
 
 ```
 
-We can see that the variogram flattens (*i.e.*, reaches an asymptote) after approximately **1 month** ([red]{style="color: red;"} line). This also indicates at how coarse the timeseries needs to be to assume independence (no autocorrelation), and corresponds to when traditional methods ---such as **minimum convex polygons (MCPs)** and **Kernel Density Estimators (KDEs)**--- could be applied without violating their assumptions.
+We can see that the variogram flattens (*i.e.*, reaches an asymptote) after approximately **1 month** (\[red\]{style="color: red;"} line). This also indicates at how coarse the timeseries needs to be to assume independence (no autocorrelation), and corresponds to when traditional methods ---such as **minimum convex polygons (MCPs)** and **Kernel Density Estimators (KDEs)**--- could be applied without violating their assumptions.
 
 ## **Step 3.** -- Selecting the best-fit movement model through *model selection*
 
@@ -324,7 +324,7 @@ UD2_pHREML <- akde(animal2_gazelle, FIT2_pHREML)
 
 ```
 
-With `animal2_gazelle`, we have a more substantial area underestimation by ML compared to pHREML (\~15.2%). We can also see that our ***effective sample size*** is only 4.5, with an ***absolute sample size*** of 49 (*N* $\ll$ *n*).
+With `animal2_gazelle`, we have a more substantial area underestimation by ML compared to pHREML (\~15.2%). We can also see that our ***effective sample size*** is only 4.5, with an ***absolute sample size*** of 49 (*N* ≪ *n*).
 
 ```{r}
 
@@ -344,7 +344,7 @@ At this point, we have selected a movement process, fed it into a home range are
 
 ```
 
-The bias is currently $\mathcal{O}(5\%)$ ("in the order of" 5%). As such, we will run parametric bootstrapping for `animal2_gazelle`. The relative error target is 1% by default (`argument error = 0.01`), but can be adjusted if necessary.
+The bias is currently 𝒪(5%) ("in the order of" 5%). As such, we will run parametric bootstrapping for `animal2_gazelle`. The relative error target is 1% by default (`argument error = 0.01`), but can be adjusted if necessary.
 
 ```{r, eval = FALSE}
 

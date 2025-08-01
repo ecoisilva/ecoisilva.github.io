@@ -1,0 +1,85 @@
+---
+title: "movedesign"
+subtitle: "<span style='color:#ffffff'> Shiny R app to evaluate sampling design for</span> <span style='color:#ffbf00'> animal movement studies</span>"
+date: 2023-06-05
+author:
+  - name: Inês Silva
+    affiliation: Center for Advanced Systems Understanding
+    orcid: "{{< meta orcid-meta >}}"
+  - name: Christen Fleming
+    affiliation: University of Central Florida
+  - name: Michael Noonan
+    affiliation: University of British Columbia Okanagan
+  - name: William Fagan
+    affiliation: University of Maryland
+  - name: Justin Calabrese
+    affiliation: Center for Advanced Systems Understanding
+
+categories:
+  - movement ecology
+  - experimental design
+pub-info:
+  reference: >-
+    <span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., & Calabrese, J. M. (2023). movedesign: Shiny R app to evaluate sampling design for animal movement studies. <i>Methods in Ecology and Evolution</i>, 14(9), 2216-2225. DOI: <a href="https://doi.org/10.1111/2041-210X.14153"><code>10.1111/2041-210X.14153</code></a>
+  links:
+    - name: Preprint
+      url: https://www.biorxiv.org/content/10.1101/2023.01.27.525894v2
+      icon: fa-solid fa-file-pdf
+      local: true
+    - name: Published paper
+      url: https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.14153
+      icon: fa-solid fa-scroll
+    # - name: Add to Zotero
+    #   url: https://www.zotero.org/save?type=doi&q=***
+    #   icon: ai ai-zotero
+  extra: >-
+doi: 10.1111/2041-210X.14153
+# image: intro.png
+# alt: "Alt here"
+---
+
+## Abstract
+
+Projects focused on movement behaviour and home range are commonplace, but beyond a focus on choosing appropriate research questions, there are no clear guidelines for such studies. Without these guidelines, designing an animal tracking study to produce reliable estimates of space-use and movement properties (necessary to answer basic movement ecology questions), is often done in an ad hoc manner.
+
+We developed `movedesign`, a user-friendly Shiny application, which can be utilized to investigate the precision of three estimates regularly reported in movement and spatial ecology studies: home range area, speed and distance travelled. Conceptually similar to statistical power analysis, this application enables users to assess the degree of estimate precision that may be achieved with a given sampling design; that is, the choices regarding data resolution (sampling interval) and battery life (sampling duration).
+
+Leveraging the `ctmm` R package, we utilize two methods proven to handle many common biases in animal movement datasets: autocorrelated kernel density estimators (AKDEs) and continuous-time speed and distance (CTSD) estimators. Longer sampling durations are required to reliably estimate home range areas via the detection of a sufficient number of home range crossings. In contrast, speed and distance estimation requires a sampling interval short enough to ensure that a statistically significant signature of the animal's velocity remains in the data.
+
+This application addresses key challenges faced by researchers when designing tracking studies, including the trade-off between long battery life and high resolution of GPS locations collected by the devices, which may result in a compromise between reliably estimating home range or speed and distance. ‘movedesign’ has broad applications for researchers and decision-makers, supporting them to focus efforts and resources in achieving the optimal sampling design strategy for their research questions, prioritizing the correct deployment decisions for insightful and reliable outputs, while understanding the trade-off associated with these choices.
+
+```{r, eval = FALSE}
+install.packages("movedesign")
+library(movedesign)
+movedesign::run_app()
+```
+
+```{=html}
+<!-- ## Citation
+
+<p class="buttons" style="text-align:center;">
+<a class="btn btn-danger" target="_blank" href="https://www.zotero.org/save?type=doi&q=***">{{< ai zotero >}}&emsp;Add to Zotero {{< fa square-arrow-up-right >}}</a>
+</p> -->
+```
+
+## Citation
+
+<div class="ref-bibtex-block">
+```bibtex
+@article{silva2023movedesign,
+  title={movedesign: Shiny R app to evaluate sampling design for animal movement studies},
+  author={Silva, In{\^e}s and Fleming, Christen H and Noonan, Michael J and Fagan, William F and Calabrese, Justin M},
+  journal={Methods in Ecology and Evolution},
+  volume={14},
+  number={9},
+  pages={2216--2225},
+  year={2023},
+  publisher={Wiley Online Library}
+}
+```
+</div>
+
+<div class="ref-hanging-indent">
+<span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., & Calabrese, J. M. (2023). movedesign: Shiny R app to evaluate sampling design for animal movement studies. <i>Methods in Ecology and Evolution</i>, 14(9), 2216-2225. DOI: <a href="https://doi.org/10.1111/2041-210X.14153"><code>10.1111/2041-210X.14153</code></a>
+</div>
+

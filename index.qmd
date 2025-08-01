@@ -4,7 +4,6 @@ pagetitle: "Inês Silva"
 subtitle: "Postdoctoral Researcher <span style='color:#ffbf00'> @ CASUS-HZDR</span>"
 image: static/website_banner.png
 # image-alt: "add here"
-
 about:
   template: marquee
   image-width: 60em
@@ -24,7 +23,7 @@ resources:
 
 ::: {.btn-group .btn-centered role="group" aria-label="Social Links"}
 [{{< fa envelope >}} Email](mailto:i-simoes-silva@hzdr.de){.btn .btn-secondary .btn role="button" data-toggle="data" title="email"}
-[{{< fa brands github >}} Github](https://www.github.com/ecoisilva){.btn .btn-secondary .btn role="button" data-toggle="data" title="github"}
+[{{< fa brands github >}} GitHub](https://www.github.com/ecoisilva){.btn .btn-secondary .btn role="button" data-toggle="data" title="github"}
 [{{< fa graduation-cap >}} Scholar](https://scholar.google.com/citations?hl=en&user=dRvr6IYAAAA){.btn .btn-secondary .btn role="button" data-toggle="data" title="scholar"}
 [{{< fa brands bluesky fa-1x>}} Bluesky](https://bsky.app/profile/ecoisilva.bsky.social){.btn .btn-secondary .btn role="button" data-toggle="data" title="bluesky"}
 :::
