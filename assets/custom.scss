@@ -1,7 +1,825 @@
-@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+// @import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Bitcount+Prop+Double:wght@100..900&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Quicksand:wght@300..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+
+/*-- scss:defaults --*/
+
+// Custom colors
+
+$dusk: #2E353B;
+$night: #253238;
+$midnight: #1C262B;
+
+$river: #06c6ca;
+$sea:	#009DA0;
+$sea-med: #007d80;
+$sea-dark: #00585A;
+$sea-night: #00393A;
+ 
+$rainforest: #009a84;
+ 
+$forest: #77b131;
+$forest-dark: #385c13;
+ 
+$jungle-light: #a3ba00;
+$jungle: #8ca000; 
+$jungle-dark: #6b8e23;
+
+$danger: #DB4545;
+$danger-dark: #A12C3B;
+$danger-night: #681A1A;
+ 
+$gold1: #ffbf00;
+$gold2: #F29800;
+$gold3: #D47800;
+              
+$grey-000: #f4f4f4 !default;
+$grey-100: #e6e6e6 !default;
+$grey-200: #cecece !default;
+$grey-300: #b0b0b0 !default;
+$grey-500: #808080 !default;
+$grey-600: #666666 !default;
+$grey-700: #4d4d4d !default;
+$grey-800: #333333 !default;
+$grey-900: #212529 !default;
+
+$white: #fff;
+$black: #000;
+
+$blue:    #2780e3 !default;
+$indigo:  #6610f2 !default;
+$purple:  #170C3A !default;
+$pink:    #A52C60 !default;
+$red:     #CF4446 !default;
+$orange:  #EE6A24 !default;
+$light-orange:  #FB9E07 !default;
+$yellow:  #F6D645 !default;
+$green:   #118230 !default;
+$teal:    #20c997 !default;
+$cyan:    #3093CF !default;
+
+$col01: #871c0f;
+$col02: #af2213;
+$col03: #d9792e;
+$col04: #f4c659;
+$col05: #f9f2d8;
+$col06: #f0f6eb;
+$col07: #6fc0ba;
+$col08: #368990;
+$col09: #244e57;
+$col10: #22394a;
+$col11: #162530;
+
+$white: #fff;
+$black: #000;
+
+$body-bg: #191a1a;
+$body-color: #c4c4c4;
+
+// Fonts
+
+$font-family-monospace: "JetBrains Mono", monospace !default;
+$font-family-sans-serif: "Fira Sans Condensed", sans-serif !default;
+$font-family-serif: "Barlow", serif !default;
+
+$headings-font-family: $font-family-sans-serif !default;
+$headings-font-weight: 600 !default;
+$navbar-font-family: $font-family-sans-serif !default;
+$toc-font-family: $font-family-sans-serif !default;
+$footer-font-family: $font-family-sans-serif !default;
+
+@font-face {
+  font-family: "Barlow", sans-serif;
+}
+
+// Fonts
+
+$font-family-monospace: "JetBrains Mono", monospace !default;
+$font-family-sans-serif: "Fira Sans Condensed", sans-serif !default;
+$font-family-serif: "Barlow", serif !default;
+
+$headings-font-family: $font-family-sans-serif !default;
+$headings-font-weight: 600 !default;
+$navbar-font-family: $font-family-sans-serif !default;
+$toc-font-family: $font-family-sans-serif !default;
+$footer-font-family: $font-family-sans-serif !default;
+
+// Body
+$body-color: $grey-900 !default;
+
+// Links
+$link-color: $orange !default;
+$link-decoration: none !default;
+$link-hover-color: $red !default;
+$link-hover-decoration: underline !default;
+
+// Inline code
+$code-bg: $grey-200 !default;
+$code-color: $grey-900 !default;
+
+// Code copy
+$btn-code-copy-color-active: $orange !default;
+
+// TOC
+$toc-color: $orange;
+$toc-font-size: 1em;
+
+// Navbar
+$navbar-bg: $purple !default;
+$navbar-fg: $white !default;
+$navbar-hl: $light-orange !default;
+
+// Footer
+$footer-bg: $grey-900 !default;
+$footer-fg: $grey-300 !default;
+
+/*-- scss:rules --*/
+
+.rtl {
+    direction: rtl;
+}
+
+.home {
+    .quarto-title-banner {
+        margin-bottom: 0;
+    }
+
+    #title-block-header {
+        margin-block-end: 0;
+    }
+}
+
+.navbar {
+    font-family: $navbar-font-family;
+}
+
+.navbar-nav.navbar-nav-scroll.ms-auto {
+    flex-direction: row;
+}
+
+.nav-link {
+  font-family: "Barlow",sans-serif !important;
+}
+
+.nav-footer {
+  font-family: "Barlow",sans-serif !important;
+  background-color: #000;
+}
+
+#title-block-header {
+    &.home {
+        margin-block-end: 0.5rem;
+    }
+}
+
+
+// Shrink blocks of code
+pre.text, pre.sourceCode, .cell-output pre {
+    font-size: 0.775em;
+}
+
+
+#TOC {
+    font-family: $toc-font-family;
+    padding-bottom: 0.1em;
+
+    .active {
+        font-weight: 400;
+    }
+
+    #toc-title {
+        font-weight: 600;
+    }
+}
+
+.sidebar nav[role="doc-toc"]>ul li a {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+.quarto-listing {
+  padding-bottom: 0em !important;
+}
+
+#quarto-margin-sidebar {
+  
+    .quarto-listing-category-title {
+        margin-left: 0.5em;
+    }
+
+    .quarto-listing-category {
+        font-family: $toc-font-family;
+        font-weight: 300;
+        font-size: 1em;
+        line-height: 1.1;
+        padding-left: 0.6rem;
+        margin-left: 0.5em;
+        border-left: 1px solid $grey-200;
+
+        .category {
+            padding-bottom: 0em;
+        }
+
+        .active {
+            font-weight: 400;
+            color: $orange;
+        }
+
+        .quarto-category-count {
+            font-weight: 200;
+            font-size: 0.8em;
+            color: $grey-600;
+        }
+    }
+}
+
+.nav-footer {
+    align-items: flex-start;  // Align all flex items to the top
+    flex-wrap: wrap;
+    border: 0 !important;
+    min-height: 3em;
+    font-family: $footer-font-family;
+
+    a {
+        color: $light-orange;
+    }
+
+    .faux-block {
+        display: block;
+        padding-bottom: 0.4em;
+    }
+
+    .fingerprint {
+        font-family: $font-family-monospace;
+        font-size: 0.8em;
+    }
+
+    // In the default Quarto template, .nav-footer-center has position: absolute 
+    // turned on, which makes the div not be a flex item
+    // This changes that so that it *is* a flex item
+    .nav-footer-center {
+        text-align: center;
+        position: inherit;
+        margin-top: 0;
+
+        @media (max-width: map-get($grid-breakpoints, md)) {
+            margin-top: 0.5em;
+            margin-bottom: 1.5em;
+        }
+    }
+
+    // When the screen is medium or smaller, make each footer chunk be 100% width 
+    // and centered; otherwise make them be 33% width and left/right/centerd
+    .nav-footer-left,
+    .nav-footer-right,
+    .nav-footer-center {
+        text-align: center;
+        width: 100%;
+        min-height: 2em;
+    }
+
+    @media (min-width: map-get($grid-breakpoints, md)) {
+        .nav-footer-left {
+            text-align: left;
+        }
+
+        .nav-footer-right {
+            text-align: right;
+        }
+
+        .nav-footer-left,
+        .nav-footer-right,
+        .nav-footer-center {
+            flex: 1 1 33%;
+        }
+    }
+}
+
+#title-block-header {
+    .quarto-title-banner {
+        font-family: $headings-font-family;
+        
+        .description {
+            font-size: 1.1em;
+            margin-top: 1em !important;
+        }
+    }
+}
+
+// Blog
+.blog {
+    .blog-entry {
+        display: flex;
+        flex-direction: row;
+        font-family: $headings-font-family;
+        line-height: 1.3;
+        margin-bottom: 1.5em;
+        column-gap: 1em;
+
+        .metadata {
+            flex: 0 0 8%;
+        }
+
+        .body {
+            flex: 1 1 auto;
+        }
+
+        .thumbnail {
+            flex: 0 0 25%;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+                max-height: 120px;
+            }
+        }
+
+        .title {
+            font-weight: 500;
+            font-size: 1.3em;
+            margin-bottom: 0.2em;
+            line-height: 1.2;
+        }
+
+        .description {
+            font-weight: 300;
+            font-size: 1em;
+            margin-bottom: 0.3em;
+        }
+
+        .date {
+            font-weight: 300;
+            font-size: 0.85em;
+            margin-top: 0.3em;
+            text-align: right;
+        }
+
+        .post-categories {
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 0.4em;
+            column-gap: 0.4em;
+            margin: 0.5em 0;
+
+            .post-category {
+                color: $grey-600;
+                border: 1px solid $grey-500;
+                border-radius: 0.25rem;
+                text-transform: uppercase;
+                font-size: 0.65em;
+                padding: 0.15em 0.5em;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.blog-post {
+    .quarto-title .quarto-categories {
+        margin-top: 1.5em;
+
+        .quarto-category {
+            background-color: shift-color($purple, -25%);
+            border-color: shift-color($purple, -45%);
+            color: $white;
+            font-size: 0.65em;
+            opacity: 1;
+        }
+    }
+}
+
+
+// Research
+.quarto-title-block {
+    .haiku {
+        text-align: right;
+        font-family: $headings-font-family;
+        margin: 1.3em 0;
+        font-size: 1.6em;
+        font-weight: 300;
+        font-style: italic;
+    }
+
+    .quarto-title .quarto-categories {
+        padding-bottom: 0;
+        flex-wrap: wrap;
+        row-gap: 0.4em;
+    }
+
+    .project-details {
+        background-color: rgba($red, 0.1);
+        padding: 0.75em;
+        margin: 1em 0;
+    }
+
+    .quarto-title-meta-heading.manual {
+        margin-top: 2em !important;
+    }
+
+    .project-links {
+        padding: 0;
+        margin-bottom: 0;
+    }
+
+    .project-link {
+        display: inline-block;
+        white-space: nowrap;
+        padding: 0 1em 0 0;
+        font-weight: bold;
+    }
+
+    .thumbnail {
+        // flex: 0 0 10%;
+
+        img {
+            width: 80%;
+            max-height: 300px;
+            float: center;
+        }
+    }
+
+}
+
+.back-nav {
+    margin-bottom: 1.5em;
+}
+
+.research {
+    .back-nav a {
+        color: shift-color($red, -50%);
+    }
+    
+    .quarto-title .quarto-categories .quarto-category {
+        background-color: shift-color($red, -75%);
+        color: $red;
+        font-size: 0.65em;
+        opacity: 1;
+    }
+
+    .project-categories {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0.35em 0 0.35em;
+        padding-top: 0.35em;
+        padding-left: 0.5em;
+        padding-bottom: 0;
+        row-gap: 0.4em;
+        column-gap: 0.4em;
+        font-family: $headings-font-family;
+        
+
+        .project-category {
+            padding: 0.25em 0.75em 0.25em 0em;
+            font-size: 0.7em;
+            text-transform: uppercase;
+            
+            font-family: "Barlow",sans-serif !important;
+            padding: .25em .75em;
+            font-size: .65em;
+            text-transform: uppercase;
+            border: solid 1px;
+            border-radius: .25rem;
+            opacity: .6;
+        }
+    }
+}
+
+// List of all research projects
+.project-list {
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 2em;
+
+        li.project {
+            margin-bottom: 2.5em;
+            border-left: 6px solid shift-color($red, -90%);
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+
+    .project-content {
+        padding-left: 0.5em;
+
+        .status {
+            font-size: 1rem;
+            font-weight: 250;
+            padding: 0.2em;
+            margin-right: 0.5em;
+        }
+    }
+
+    .haiku {
+        margin: 0.4rem 0 0rem;
+        font-family: $headings-font-family;
+        font-weight: 300;
+        font-style: italic;
+        text-align: right;
+        color: $grey-600;
+        font-size: 1.1em;
+
+        @media (max-width: map-get($grid-breakpoints, md)) {
+            font-size: 0.95rem;
+        }
+    }
+
+    .thumbnail {
+        flex: 0 0 10%;
+
+        img {
+            width: 20%;
+            object-fit: cover;
+            max-width: 300px;
+            float: right;
+        }
+    }
+
+    ul.project-links {
+        margin-bottom: 0;
+    }
+
+    .project-details-listing {
+        margin-top: 0.8em;
+        background-color: shift-color($red, -90%);
+        font-size: 0.9rem;
+
+        @media (max-width: map-get($grid-breakpoints, md)) {
+            font-size: 0.95rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            white-space: nowrap;
+            padding: 0.5em 0.5em 0.5em 1em;
+        }
+
+        .details {
+            background-color: $red;
+            padding-right: 1.5em;
+
+            a {
+                color: #FFFFFF;
+            }
+        }
+    }
+}
+
+.code {
+    .package-entry {
+        display: flex;
+        flex-direction: row;
+        font-family: $headings-font-family;
+        line-height: 1.3;
+        margin-bottom: 3em;
+        column-gap: 0.7em;
+
+        .body {
+            flex: 1 1 auto;
+        }
+
+        .logo {
+            flex: 0 0 140px;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .package-title {
+            font-weight: 500;
+            font-size: 1.25em;
+            margin-bottom: 0.2em;
+        }
+        
+        .package-details {
+            font-weight: 300;
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+            color: $grey-800;
+        }
+
+        .package-description {
+            font-weight: 300;
+            font-size: 1.1em;
+            margin-bottom: 0.5em;
+        }
+
+        .package-role {
+            font-weight: 500;
+        }
+
+        ul.package-semesters {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 0;
+
+            li {
+                display: inline-block;
+                white-space: nowrap;
+                background-color: $orange;
+                margin: 0 0.2em 0.4em 0;
+                padding: 0.2em 0.4em;
+                font-size: 0.85em;
+                border-radius: 0.25rem;
+
+                &.no-link {
+                    background-color: $white;
+                    border: 1px solid $black;
+                }
+
+                a {
+                    color: $white;
+                }
+            }
+        }
+    }
+}
+
+.talks {
+    .talk-entry {
+        display: flex;
+        flex-direction: row;
+        font-family: $headings-font-family;
+        line-height: 1.3;
+        margin-bottom: 1.5em;
+        column-gap: 1em;
+
+        .body {
+            flex: 1 0 80%;
+        }
+
+        .metadata {
+            flex: 1 0 20%;
+        }
+
+        .title {
+            font-weight: 500;
+            font-size: 1.2em;
+            margin-bottom: 0.2em;
+            line-height: 1.2;
+        }
+
+        .description {
+            font-weight: 300;
+            font-size: 1em;
+            margin-bottom: 0.3em;
+        }
+
+        .date {
+            font-weight: 300;
+            font-size: 0.85em;
+            margin-top: 0.3em;
+            text-align: right;
+        }
+
+        ul.talk-links {
+            padding: 0 0.5em;
+            background-color: shift-color($light-orange, -91%);
+            margin-bottom: 0;
+
+            .talk-link {
+                display: inline-block;
+                white-space: nowrap;
+                margin: 0;
+                padding: 0.5em 1em 0.5em 0;
+                font-size: 0.85em;
+            }
+        }
+    }
+}
+
+.media {
+    .media-entry {
+        display: flex;
+        flex-direction: row;
+        font-family: $headings-font-family;
+        line-height: 1.3;
+        margin-bottom: 1.5em;
+        column-gap: 1em;
+
+        .body {
+            flex: 1 0 60%;
+        }
+
+        .thumbnail {
+            flex: 0 0 30%;
+
+            img {
+                width: 100%;
+                object-fit: cover;
+                max-height: 200px;
+            }
+        }
+
+        .metadata {
+            flex: 1 0 20%;
+        }
+
+        .title {
+            font-weight: 500;
+            font-size: 1.2em;
+            margin-bottom: 0.2em;
+            line-height: 1.2;
+            color: #373a3e;
+        }
+
+        .description {
+            font-weight: 300;
+            font-size: 1em;
+            margin-bottom: 0.3em;
+        }
+
+        .date {
+            font-weight: 300;
+            font-size: 0.85em;
+            margin-top: 0.3em;
+            text-align: left;
+        }
+
+        ul.media-links {
+            padding: 0 0.5em;
+            background-color: shift-color($light-orange, -91%);
+            margin-bottom: 0;
+
+            .media-link {
+                display: inline-block;
+                white-space: nowrap;
+                margin: 0;
+                padding: 0.5em 1em 0.5em 0;
+                font-size: 0.85em;
+            }
+        }
+    }
+}
+
+.cv-download {
+    font-family: $headings-font-family;
+    background-color: #771C6D;
+    border-color: #771C6D;
+    color: $white;
+
+    &:hover {
+        background-color: $red;
+        border-color: $red;
+        color: $white;
+    }
+}
+
+.code-tools-button {
+    position: relative;
+    left: 5em;
+
+    @media (max-width: map-get($grid-breakpoints, md)) {
+        left: 0;
+    }
+}
 
 .title {
-font-family: 'Crimson Pro', sans-serif !important;
+    color: white;
+  }
+
+
+  
+.bounce-in-right {
+    animation: bounce-in-right 2s ease 1;
+}
+@keyframes bounce-in-right {
+    0% {
+        opacity: 0;
+        transform: translateX(2000px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(-30px);
+    }
+    80% { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+}
+
+.bounce-in-left {
+    animation: bounce-in-left 2s ease 1;
+}
+@keyframes bounce-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-2000px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(30px);
+    }
+    80% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+
+// Titles and headings
+
+.title {
+  font-family: "Crimson Pro", sans-serif !important;
   font-size: 3rem !important;
   font-weight: 400 !important;
   line-height: 1.1em !important;
@@ -10,11 +828,45 @@ font-family: 'Crimson Pro', sans-serif !important;
 }
 
 .subtitle {
-  font-family: 'Barlow', sans-serif !important;
+  font-family: "Barlow", sans-serif !important;
   font-size: 1rem !important;
   font-weight: 300 !important;
   letter-spacing: 0.2em !important;
-  line-height: 5px !important;
+  line-height: 20px !important;
+}
+
+body {
+  font-family: 'Barlow', sans-serif !important;
+  text-align: justify !important;
+}
+
+div.quarto-about-jolla main {
+  text-align: justify !important;
+}
+
+
+/*
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  color: rgb(218, 218, 219) !important;
+}
+
+h2 {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 100;
+  font-size: 11px;
+  color: rgb(218, 218, 219) !important;
+} */
+
+a {
+  text-underline-offset: 3px;
+  color: rgb(218, 218, 219) !important;
+}
+a:hover {
+  color: $gold1 !important;
+  text-decoration: underline;
 }
 
 /* heading, subtitle, and blurb */
@@ -47,10 +899,9 @@ font-family: 'Crimson Pro', sans-serif !important;
   border: none !important;  
 }
 
-/* Learn More About Me */
 .about-links.subtitle {
   font-size: 1em !important;
-  font-family: "Red Hat Text";
+  font-family: "Crimson Pro", sans-serif !important;
   justify-content: flex-end !important;
 }
 
@@ -101,4 +952,44 @@ font-family: 'Crimson Pro', sans-serif !important;
       order: 1 !important;
       padding: 0 2em 0 2em !important;
     }
+}
+
+div.quarto-about-jolla .about-image {
+  display: block !important;
+  width: 108% !important;
+  padding: 0em 0em 0em 0em !important;
+  margin-left: -5em !important;
+  margin-right: -5em !important;
+  margin-bottom: 0em !important;
+}
+
+div.quarto-about-marquee .about-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100% !important;
+  padding: 0em 0em 0em 0em !important;
+}
+
+.ref-bibtex-block pre,
+.ref-bibtex-block code {
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.ref-hanging-indent {
+  /* font-size: 14px; */
+  padding-left: 0;
+  text-indent: -3em;
+  margin-left: 3em;
+}
+
+.custom-author {
+  color: #009da0;
+  font-family: "Barlow", sans-serif !important;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 600 !important;
 }

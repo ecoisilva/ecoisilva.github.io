@@ -30,6 +30,7 @@ website:
   
   navbar:
     logo: "/static/logo_favicon.png"
+    title: false
     tools:
     - icon: github
       href: https://www.github.com/ecoisilva
@@ -41,12 +42,12 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: blog.qmd
-        text: Posts
       - href: content/publications.qmd
         text: Publications
       - href: content/software.qmd
         text: Software
+      - href: blog.qmd
+        text: Posts
     
   page-footer: 
     left: >-
@@ -62,11 +63,24 @@ format:
       # dark:
         - darkly
         - assets/custom-dark.scss
+        - assets/custom.scss
       # light:
-      #  - cosmo
-    css: assets/styles.css
+      #   - darkly
+      #   - assets/custom-light.scss
+      #   - assets/custom.scss
     toc: true
     code-link: true
     lightbox: true
+    anchor-sections: true
+    fig-cap-location: margin
+    reference-location: margin
+    footnotes-hover: true
+    highlight-style: monokai
 
 editor: visual
+
+pagetitle: "Inês Silva"
+description-meta: "Inês Silva is a quantitative ecologist."
+author-meta: "Inês Silva"
+affiliation-meta: "CASUS-HZDR"
+orcid-meta: 0000-0003-4850-6193

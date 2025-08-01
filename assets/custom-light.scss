@@ -1,0 +1,277 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+
+$dusk: #2E353B;
+$night: #253238;
+$midnight: #1C262B;
+
+$sea-light: #06c6ca;
+$sea:	#009DA0;
+$sea-med: #007d80;
+$sea-dark: #00585A;
+$sea-night: #00393A;
+ 
+$rainforest: #009a84;
+ 
+$forest: #77b131;
+$forest-dark: #385c13;
+ 
+$jungle-light: #a3ba00;
+$jungle: #8ca000; 
+$jungle-dark: #6b8e23;
+
+$danger: #DB4545;
+$danger-dark: #A12C3B;
+$danger-night: #681A1A;
+ 
+$gold: #F29800;
+$gold-dawn: #ffbf00;
+$gold-dark: #D47800;
+              
+$grey-000: #f4f4f4;
+$grey-100: #e6e6e6;
+$grey-200: #cecece;
+$grey-300: #b0b0b0;
+$grey-500: #808080;
+$grey-600: #666666;
+$grey-700: #4d4d4d;
+$grey-800: #333333;
+
+$white: #fff;
+$black: #000;
+
+$sans: "Barlow", "Fira Sans", sans-serif;
+$monosans: "JetMono Brains", Consolas, monospace;
+
+/*-- scss:defaults --*/
+
+/*-- Define colors for later use --*/
+
+$bs-blue: $sea-med !default;
+$bs-pagination-active-bg: $bs-blue !default;
+$bs-primary: $bs-blue !default;
+$bs-btn-hover-bg: $bs-blue !default;
+
+$primary: #368990;
+$secondary: $sea;
+$tertiary: $gold;
+$success: #368990;
+$h1-font-family-sans-serif: Sans;
+
+$col01: #871c0f;
+$col02: #af2213;
+$col03: #d9792e;
+$col04: #f4c659;
+$col05: #f9f2d8;
+$col06: #f0f6eb;
+$col07: #6fc0ba;
+$col08: #368990;
+$col09: #244e57;
+$col10: #22394a;
+$col11: #162530;
+
+/*
+  --theme: rgb(29, 30, 32);
+  --entry: rgb(46, 46, 51);
+  --primary: rgb(218, 218, 219);
+  --secondary: rgb(155, 156, 157);
+  --tertiary: rgb(65, 66, 68);
+  --content: rgb(196, 196, 197);
+  --code-block-bg: rgb(46, 46, 51);
+  --code-bg: rgb(55, 56, 62);
+  --border: rgb(51, 51, 51);
+*/
+
+@font-face {
+  font-family: 'Barlow', sans-serif;
+}
+
+@font-face {
+  font-family: 'Barlow', sans-serif;
+}
+
+body {
+  font-family: 'Barlow', sans-serif !important;
+  text-align: justify !important;
+}
+
+div.quarto-about-jolla main {
+  text-align: justify !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 100;
+  font-style: normal;
+  color: $sea-med !important;
+}
+
+h2 {
+  font-family: 'Barlow', sans-serif;
+  font-weight: 100;
+  font-size: 11px;
+  color: $sea-med !important;
+}
+
+a {
+  text-underline-offset: 3px;
+  color: $sea-med !important;
+}
+
+b, strong {
+  color: $bs-blue;
+  font-weight: bolder;
+}
+
+p {
+  font-family: 'Barlow', sans-serif;
+  text-align: justify !important;
+}
+
+/*-- scss:rules --*/
+
+.quarto-table-wrapper {
+  overflow-x: scroll;
+  font-size: 17px;
+}
+
+
+span.theorem-title{
+  background-color:#5fa6bc33;
+  padding: 3pt;
+  color: $col08;
+  border-radius:3pt;
+}
+
+code {
+  font-size: 0.875em;
+  color: $gold;
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: rgb(218, 218, 219) !important;
+  background: rgb(55, 56, 62) !important;
+}
+
+p pre code:not(.sourceCode),
+li pre code:not(.sourceCode),
+pre code:not(.sourceCode) {
+  background-color: #f0efff;
+}
+
+code span.va {
+    color: $col07;
+    font-style: inherit;
+}
+
+code span.at {
+    color: $col02;
+    font-style: inherit;
+}
+
+code span.fu {
+    color: $col07; /* $col03; */
+    font-style: inherit;
+}
+
+code span.st {
+    color: $col04;
+    font-style: inherit;
+}
+
+code span.co {
+    color: #999;
+    font-style: inherit;
+}
+
+code span.dv {
+    color: $col01;
+    font-style: inherit;
+}
+
+code span.op {
+    color: $col05;
+    font-style: inherit;
+}
+
+p code:not(.sourceCode),
+li code:not(.sourceCode),
+td code:not(.sourceCode) {
+  font-family: 'JetBrains Mono', monospace;
+  color: rgb(218, 218, 219) !important;
+  background: rgb(55, 56, 62) !important;
+  padding: 4px 6px;
+  font-size: .78em;
+  line-height: 1.5;
+}
+
+div.sourceCode, div.sourceCode pre.sourceCode {
+    border: none !important;
+    /* color: #222; */
+    /* background-color: #f6d5e920; */
+    /* border-color: #191a1a; */
+    /* padding-left: 3px; */
+    /* border-radius: .5rem; */
+}
+
+#title-block-header.quarto-title-block.default .quarto-title .title {
+ font-family: "Crimson Pro" !important;
+ font-style: italic;
+ font-size: 3em;
+ color: $gold;
+}
+
+.navbar {
+ background-color: $bs-blue;
+}
+
+.badge {
+  font-family: "JetBrains Mono" !important;
+  font-weight: 100 !important;
+  color: white !important;
+}
+
+.bg-primary {
+  background-color: #17424a !important;
+}
+
+
+.quarto-title-banner{
+  background-color: #0c2e42 ;
+}
+
+.btn-primary {
+  color: #fff;
+    background-color: $bs-blue;
+  border-color: $bs-blue;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+    background-color: $bs-blue;
+  border-color: $bs-blue;
+}
+
+.quarto-title-banner {
+  margin-bottom: 1em;
+  color: rgba(255,255,255,.7);
+  background: $bs-blue;
+}
+
+.page-link {
+  color: $bs-blue;
+}
+
+.page-link:hover {
+  z-index: 2;
+  color: #fff;
+    background-color: $bs-blue;
+  border-color: $bs-blue;
+}
+
+div.quarto-post .listing-categories .listing-category {
+  color: $bs-blue;
+  border: solid 1px var(--bs-gray-400);
+  font-size: .8em;
+}

@@ -1,11 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
 
+/*-- scss:defaults --*/
+
+// Custom color palette:
 
 $dusk: #2E353B;
 $night: #253238;
 $midnight: #1C262B;
 
-$sea-light: #06c6ca;
+$river: #06c6ca;
 $sea:	#009DA0;
 $sea-med: #007d80;
 $sea-dark: #00585A;
@@ -24,9 +27,9 @@ $danger: #DB4545;
 $danger-dark: #A12C3B;
 $danger-night: #681A1A;
  
-$gold: #F29800;
-$gold-dawn: #ffbf00;
-$gold-dark: #D47800;
+$gold1: #ffbf00;
+$gold2: #F29800;
+$gold3: #D47800;
               
 $grey-000: #f4f4f4;
 $grey-100: #e6e6e6;
@@ -36,25 +39,6 @@ $grey-500: #808080;
 $grey-600: #666666;
 $grey-700: #4d4d4d;
 $grey-800: #333333;
-
-$white: #fff;
-$black: #000;
-
-$sans: 'Barlow', 'Fira Sans', sans-serif;
-$monosans: 'JetMono Brains', Consolas, monospace;
-
-/*-- scss:defaults --*/
-
-/*-- Define colors for later use --*/
-
-$body-bg: #191a1a;
-$body-color: #c4c4c4;
-
-$primary: #368990;
-$secondary: $sea;
-$tertiary: $gold;
-$success: #368990;
-$h1-font-family-sans-serif: Sans;
 
 $col01: #871c0f;
 $col02: #af2213;
@@ -68,58 +52,63 @@ $col09: #244e57;
 $col10: #22394a;
 $col11: #162530;
 
-/*
-  --theme: rgb(29, 30, 32);
-  --entry: rgb(46, 46, 51);
-  --primary: rgb(218, 218, 219);
-  --secondary: rgb(155, 156, 157);
-  --tertiary: rgb(65, 66, 68);
-  --content: rgb(196, 196, 197);
-  --code-block-bg: rgb(46, 46, 51);
-  --code-bg: rgb(55, 56, 62);
-  --border: rgb(51, 51, 51);
-*/
+$white: #fff;
+$black: #000;
 
-@font-face {
-  font-family: 'Barlow', sans-serif;
-}
+// Fonts
 
-@font-face {
-  font-family: 'Barlow', sans-serif;
-}
+$font-family-monospace: "JetBrains Mono", monospace !default;
+$font-family-sans-serif: "Fira Sans Condensed", sans-serif !default;
+$font-family-serif: "Barlow", serif !default;
 
-body {
-  font-family: 'Barlow', sans-serif !important;
-  text-align: justify !important;
-}
+$headings-font-family: $font-family-sans-serif !default;
+$headings-font-weight: 600 !default;
+$navbar-font-family: $font-family-sans-serif !default;
+$toc-font-family: $font-family-sans-serif !default;
+$footer-font-family: $font-family-sans-serif !default;
 
-div.quarto-about-jolla main {
-  text-align: justify !important;
+// Bootstrap base shades
+
+$light:         #f8f9fa !default;
+$dark:          #212529 !default;
+
+// Bootstrap status colors
+
+$primary:       #17424a !default;
+$secondary:     #009DA0 !default;
+$success:       #708e04 !default;
+
+$info:          #009DA0 !default;
+$warning:       #ffb300 !default;
+$danger:        #af2213 !default;
+
+$body-bg: #191a1a;
+$body-color: #c4c4c4;
+
+// Titles and headings
+
+.title {
+  color: #ffbf00 !important;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Fira Sans Condensed', sans-serif;
-  font-weight: 100;
-  font-style: normal;
   color: rgb(218, 218, 219) !important;
 }
 
 h2 {
-  font-family: 'Barlow', sans-serif;
-  font-weight: 100;
-  font-size: 11px;
   color: rgb(218, 218, 219) !important;
+}
+
+h3 {
+  font-weight: 400 !important;
+  font-size: 1.2rem !important;
+  color: $gold1 !important;
 }
 
 a {
-  text-underline-offset: 3px;
-  color: rgb(218, 218, 219) !important;
-}
-
-p {
-  font-family: 'Barlow', sans-serif;
-  text-align: justify !important;
-}
+  color: #fff !important;
+  /* color: rgb(218, 218, 219) !important; */
+} 
 
 /*-- scss:rules --*/
 
@@ -136,51 +125,48 @@ span.theorem-title{
   border-radius:3pt;
 }
 
-code {
-  font-size: 0.875em;
-  color: $gold;
-}
 
+// Code
+
+code,
 code, pre {
-  font-family: 'JetBrains Mono', monospace;
-  background-color: rgb(218, 218, 219) !important;
-  background: rgb(55, 56, 62) !important;
+  font-family: $font-family-monospace !important;
+  font-size: 0.875em;
+  background: #2b2b2b !important;
 }
 
-
-code span.va {
-    color: $col07;
-    font-style: inherit;
+code span {
+  color: rgb(218, 218, 219);
 }
-
-code span.at {
-    color: $col02;
-    font-style: inherit;
-}
-
-code span.fu {
-    color: $col07; /* $col03; */
-    font-style: inherit;
-}
-
-code span.st {
-    color: $col04;
-    font-style: inherit;
-}
-
 code span.co {
-    color: #999;
-    font-style: inherit;
+  color: #999999;
 }
-
+code span.st {
+  color: $col04;
+}
+code span.fu {
+  color: $col07; /* $col03; */
+}
+code span.cf {
+  color: #af7913;
+}
+code span.at {
+ /* color: #000; */
+}
+code span.va {
+  color: $col07;
+}
+code span.at {
+  color: $col02;
+}
+code span.fl {
+  color: $gold1;
+}
 code span.dv {
-    color: $col01;
-    font-style: inherit;
+  color: $col01;
 }
-
 code span.op {
-    color: $col05;
-    font-style: inherit;
+  color: $col05;
 }
 
 p code:not(.sourceCode),
@@ -206,10 +192,11 @@ div.sourceCode, div.sourceCode pre.sourceCode {
 
 
 #title-block-header.quarto-title-block.default .quarto-title .title {
- font-family: "Crimson Pro" !important;
- font-style: italic;
- font-size: 3em;
- color: $gold;
+ font-family: "Bitcount" !important;
+ font-style: normal !important;
+ font-weight: 300 !important;
+ font-size: 2em !important;
+ color: $gold2;
 }
 
 .navbar {
@@ -217,7 +204,7 @@ div.sourceCode, div.sourceCode pre.sourceCode {
   color: #dee2e6;
 }
 .navbar-brand {
-  color: $gold-dawn !important;
+  color: $gold1 !important;
   font-family: "Crimson Pro";
   font-style: italic;
 }
@@ -242,18 +229,22 @@ div.sourceCode, div.sourceCode pre.sourceCode {
     color: dimgrey;
 }
 
+.btn:hover {
+  color: white !important;
+}
+
 .btn-primary {
  background-color: #17424a;
  border-color: #17424a;
 }
 .btn-primary:hover {
- background-color: $gold-dark;
- border-color: $gold-dark;
+ background-color: $gold3;
+ border-color: $gold3;
 }
 
 .btn-secondary {
   font-family: "JetBrains Mono",monospace;
-  color: #fff;
+  color: white;
   background-color: #2c2c2c;
   border-color: #000;
   font-size: 12px;
@@ -331,15 +322,15 @@ div.quarto-post .listing-categories .listing-category {
 }
 
 .link-dark {
-  color: $gold-dawn !important;
+  color: $gold1 !important;
 }
 
 .link-dark:focus {
-  color: $gold !important;
+  color: $gold2 !important;
 }
 
 .link-dark:hover {
-  color: $gold !important;
+  color: $gold2 !important;
 }
 
 .badge {
@@ -350,4 +341,141 @@ div.quarto-post .listing-categories .listing-category {
 
 .bg-primary {
   background-color: #17424a !important;
+}
+
+
+// Navbar and Sidebar
+
+// Highlight active links in the sidebar Table of Contents
+.sidebar nav[role="doc-toc"] ul > li > a.active,
+.sidebar nav[role="doc-toc"] ul > li > ul > li > a.active {
+  // Add a colored border to the left of active links
+  border-left: 1px solid $gold1 !important;
+  // Set active link color
+  color: $gold1 !important;
+}
+
+// Target all sidebar Table of Contents links
+.sidebar nav[role="doc-toc"] > ul li a {
+  // When a link is active, highlight it
+  &.active {
+    border-left: 1px solid $gold1 !important;
+    color: $gold1 !important;
+  }
+}
+
+// Change color of links on hover
+.sidebar nav[role=doc-toc] ul > li > a:hover,
+.sidebar nav[role=doc-toc] ul > li > ul > li > a:hover {
+  color: $sea !important;
+}
+
+// Highlight active links on hover
+.sidebar nav[role=doc-toc] ul > li > a.active:hover,
+.sidebar nav[role=doc-toc] ul > li > ul > li > a.active:hover {
+  border-left: 1px solid $sea !important;
+  color: $sea !important;
+}
+
+.navbar .navbar-nav .show>.nav-link,
+.navbar .navbar-nav .active>.nav-link,
+.navbar .navbar-nav .nav-link.active,
+div.sidebar-item-container .active,
+div.sidebar-item-container .show>.nav-link,
+div.sidebar-item-container .sidebar-link>code{
+  color: $sea !important;
+  /*
+  font-family: "Bitcount Prop Double" !important;
+  font-optical-sizing: auto;
+  font-weight: 300 !important;
+  font-style: normal !important;
+  font-variation-settings: "slnt" 0, "CRSV" 0.5, "ELSH" 0, "ELXP" 0;
+  font-size: 25px;
+  display: flex;
+  height: 79%;
+  align-items: center; */
+
+}
+
+/*
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-brand:hover {
+ color: $sea !important;
+} */
+
+.navbar .navbar-nav .nav-link {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    height: 1px;
+    width: 0;
+    transition: width 0.3s ease;
+    transform-origin: center;
+    transform: translateX(-50%);
+    /* background-color: $sea; */
+    background-image: linear-gradient(to right, #000, $sea, #000);
+  }
+
+  &:hover::after {
+    width: 70%;
+  }
+
+  &:hover {
+    color: $sea !important;
+  }
+}
+
+.navbar-title {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    height: 1px;
+    width: 0;
+    transition: width 0.3s ease;
+    transform-origin: center;
+    transform: translateX(-50%);
+    background-image: linear-gradient(to right, #000, $gold1, #000);
+  }
+
+  &:hover::after {
+    width: 70%;
+  }
+
+  &:hover {
+    color: $gold1 !important;
+  }
+}
+
+
+// Manuscripts
+
+.project-list .project-details-listing .details {
+  background-color: #00797f !important;
+}
+.project-list .project-details-listing {
+  background-color: #393939 !important;
+  font-size: 13px;
+}
+.project-list ul li.project {
+  border-left: 6px solid #095552 !important;
+}
+
+.project-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.5em !important;
 }
