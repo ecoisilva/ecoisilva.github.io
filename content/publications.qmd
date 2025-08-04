@@ -24,7 +24,7 @@ body {
 </style>
 ```
 
-My research focused on both *applied* and *quantitative ecology*—the application of statistical and computational methods to understand ecological patterns and processes. I focus on <span style="color:#ffbf00"**movement ecology**</span> and <span style="color:#ffbf00">**road ecology**</span>, and I’m especially interested in study design, and the development of reproducible workflows to support ecological decision-making. I am also interested in understanding the direct and indirect impacts of roads on vertebrate communities.
+My research focused on both *applied* and *quantitative ecology*—the application of statistical and computational methods to understand ecological patterns and processes. I focus on <span style="color:#ffbf00">**movement ecology**</span> and <span style="color:#ffbf00">**road ecology**</span>, and I’m especially interested in study design, and the development of reproducible workflows to support ecological decision-making. I am also interested in understanding the direct and indirect impacts of roads on vertebrate communities.
 
 <br>
 
