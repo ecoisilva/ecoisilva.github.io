@@ -64,8 +64,8 @@ movedesign::run_app()
 
 ## Citation
 
-<div class="ref-bibtex-block">
-```bibtex
+::: ref-bibtex-block
+``` bibtex
 @article{silva2023movedesign,
   title={movedesign: Shiny R app to evaluate sampling design for animal movement studies},
   author={Silva, In{\^e}s and Fleming, Christen H and Noonan, Michael J and Fagan, William F and Calabrese, Justin M},
@@ -77,9 +77,8 @@ movedesign::run_app()
   publisher={Wiley Online Library}
 }
 ```
-</div>
+:::
 
-<div class="ref-hanging-indent">
-<span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., & Calabrese, J. M. (2023). movedesign: Shiny R app to evaluate sampling design for animal movement studies. <i>Methods in Ecology and Evolution</i>, 14(9), 2216-2225. DOI: <a href="https://doi.org/10.1111/2041-210X.14153"><code>10.1111/2041-210X.14153</code></a>
-</div>
-
+::: ref-hanging-indent
+[Silva, I.]{.custom-author}, Fleming, C. H., Noonan, M. J., Fagan, W. F., & Calabrese, J. M. (2023). movedesign: Shiny R app to evaluate sampling design for animal movement studies. <i>Methods in Ecology and Evolution</i>, 14(9), 2216-2225. DOI: <a href="https://doi.org/10.1111/2041-210X.14153"><code>10.1111/2041-210X.14153</code></a>
+:::
