@@ -20,7 +20,7 @@ categories:
   - experimental design
 pub-info:
   reference: >-
-    <span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., & Calabrese, J. M. (2025). Too few, too many, or just right? Optimizing sample sizes for population-level inferences in animal tracking projects. <i>BioRxiv</i>. DOI: <a href="https://www.XXX"><code>10.1257/pol.20220766</code></a>
+    <span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., & Calabrese, J. M. (2025). Too few, too many, or just right? Optimizing sample sizes for population-level inferences in animal tracking projects. <i>BioRxiv</i>. DOI: <a href="https://www.biorxiv.org/content/10.1101/2025.07.30.667390v1"><code>10.1101/2025.07.30.667390v1</code></a>
   links:
     - name: Preprint
       url: ms_study-design.pdf
@@ -33,7 +33,7 @@ pub-info:
     #   url: https://www.zotero.org/save?type=doi&q=***
     #   icon: ai ai-zotero
   extra: >-
-doi: 10.XXXX
+doi: 10.1101/2025.07.30.667390v1
 # image: intro.png
 # alt: "Alt here"
 ---
@@ -67,11 +67,15 @@ movedesign::run_app()
 ```
 
 ## Citation
+
 <!-- <div class="ref-bibtex-block"> -->
+
 <!-- ```bibtex -->
+
 <!-- ``` -->
+
 <!-- </div> -->
 
 ::: ref-hanging-indent
-<span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., & Calabrese, J. M. (2025). Too few, too many, or just right? Optimizing sample sizes for population-level inferences in animal tracking projects. <i>BioRxiv</i>. DOI: <a href="https://www.XXX"><code>10.1257/pol.20220766</code></a>
+[Silva, I.]{.custom-author}, Fleming, C. H., Noonan, M. J., Fagan, W. F., & Calabrese, J. M. (2025). Too few, too many, or just right? Optimizing sample sizes for population-level inferences in animal tracking projects. <i>BioRxiv</i>. DOI: <a href="https://www.biorxiv.org/content/10.1101/2025.07.30.667390v1"><code>10.1101/2025.07.30.667390v1</code></a>
 :::
