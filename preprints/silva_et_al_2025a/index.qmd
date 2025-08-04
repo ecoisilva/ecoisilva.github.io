@@ -1,0 +1,77 @@
+---
+title: "Too few, too many, or just right?"
+subtitle: "<span style='color:#ffffff'> Optimizing sample sizes for population-level inferences in</span> <span style='color:#ffbf00'>animal tracking projects</span>"
+date: 2025-08-01
+author:
+  - name: Inês Silva
+    affiliation: Center for Advanced Systems Understanding
+    orcid: "{{< meta orcid-meta >}}"
+  - name: Christen Fleming
+    affiliation: University of Central Florida
+  - name: Michael Noonan
+    affiliation: University of British Columbia Okanagan
+  - name: William Fagan
+    affiliation: University of Maryland
+  - name: Justin Calabrese
+    affiliation: Center for Advanced Systems Understanding
+
+categories:
+  - movement ecology
+  - experimental design
+pub-info:
+  reference: >-
+    <span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., & Calabrese, J. M. (2025). Too few, too many, or just right? Optimizing sample sizes for population-level inferences in animal tracking projects. <i>BioRxiv</i>. DOI: <a href="https://www.XXX"><code>10.1257/pol.20220766</code></a>
+  links:
+    - name: Preprint
+      url: ms_study-design.pdf
+      icon: fa-solid fa-file-pdf
+      local: true
+    # - name: Published paper
+    #   url: https://add.here
+    #   icon: fa-solid fa-scroll
+    # - name: Add to Zotero
+    #   url: https://www.zotero.org/save?type=doi&q=***
+    #   icon: ai ai-zotero
+  extra: >-
+doi: 10.XXXX
+# image: intro.png
+# alt: "Alt here"
+---
+
+## Abstract
+
+Successful animal tracking projects depend on well-informed sampling strategies and robust methods to yield biologically meaningful inferences. Considering financial and logistical constraints, the reliability of research outputs is shaped by key decisions regarding study duration (*how long* should each individual be tracked?), sampling frequency (*how often* should new locations be collected?), and *how* *many* individuals should be tracked. To maximize their conservation value, studies must avoid biased estimates of key parameters related to movement behavior and space use, as this can lead to wasted resources and misguided management actions.
+
+To address these challenges, we propose a workflow for determining the optimal sample sizes for population-level inferences in movement ecology, explicitly addressing the trade-offs between sampling duration ($T$), sampling interval (reciprocal of frequency; $\Delta t$), and population sample size ($m$). While *a priori* study design is considered best practice, this workflow can be applied at multiple stages, including concurrent with data collection, or as a *post hoc* evaluation.
+
+By selecting robust methods that are sampling-insensitive, and by quantifying and propagating uncertainty through downstream analyses, we can determine whether our sample sizes (both at the individual- and population-level) are sufficient to yield robust population-level inferences, such as mean home range area or mean movement speed. Furthermore, researchers can integrate additional logistical constraints such as fix success rate, location error, and potential device malfunctions, while also accounting for individual variation. We illustrate potential applications of this workflow through empirically-guided simulations.
+
+To facilitate its use and implementation, we incorporated this workflow into the user-friendly `movedesign` `R` Shiny application. This application enables researchers to easily test different sampling strategies, and as of version `0.3.2`, integrates population-level analytical targets. This workflow has the potential to improve the rigor and reliability of animal tracking projects conducted under logistical and financial constraints, and thereby support more effective scientific research, wildlife management, and conservation efforts.
+
+## Graphical Abstract
+
+![](GraphicalAbstract.PNG)
+
+```{r, eval = FALSE}
+install.packages("movedesign")
+library(movedesign)
+movedesign::run_app()
+```
+
+```{=html}
+<!-- ## Citation
+
+<p class="buttons" style="text-align:center;">
+<a class="btn btn-danger" target="_blank" href="https://www.zotero.org/save?type=doi&q=***">{{< ai zotero >}}&emsp;Add to Zotero {{< fa square-arrow-up-right >}}</a>
+</p> -->
+```
+
+## Citation
+<!-- <div class="ref-bibtex-block"> -->
+<!-- ```bibtex -->
+<!-- ``` -->
+<!-- </div> -->
+
+::: ref-hanging-indent
+<span class="custom-author">Silva, I.</span>, Fleming, C. H., Noonan, M. J., Fagan, W. F., & Calabrese, J. M. (2025). Too few, too many, or just right? Optimizing sample sizes for population-level inferences in animal tracking projects. <i>BioRxiv</i>. DOI: <a href="https://www.XXX"><code>10.1257/pol.20220766</code></a>
+:::
